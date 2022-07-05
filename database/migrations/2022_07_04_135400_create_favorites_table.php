@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             
             $table->id();
-            $table->foreignId('u_id')->constrained('customers');
+            $table->foreignId('c_id')->constrained('customers');
             $table->foreignId('m_id')->constrained('movies');
             
         });
@@ -32,3 +32,5 @@ return new class extends Migration
         Schema::dropIfExists('favorites');
     }
 };
+
+

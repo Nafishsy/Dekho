@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('rating', $precision = 2, $scale = 1);
             $table->integer('views');
             $table->dateTime('uploadTime', $precision = 0);
-
+            $table->string('genre');
 
         });
     }
