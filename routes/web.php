@@ -17,4 +17,5 @@ use App\Http\Controllers\SubAdminController;
 Route::get('/',[SubAdminController::class,'ManageMovies'])->name('SubAdmin.movieManage');
 Route::get('/subadmin/addmovies',[SubAdminController::class,'AddMovies'])->name('SubAdmin.AddMovies');
 Route::post('/subadmin/addmovies',[SubAdminController::class,'UploadMovie'])->name('SubAdmin.AddMovies.Upload');
+Route::get('/subadmin/Video',[SubAdminController::class,'Videos'])->name('SubAdmin.Videos');
 

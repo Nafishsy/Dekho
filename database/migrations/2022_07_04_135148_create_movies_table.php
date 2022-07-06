@@ -18,10 +18,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->decimal('rating', $precision = 2, $scale = 1);
-            $table->integer('views');
+            $table->decimal('rating', $precision = 2, $scale = 1)->default(0);
+            $table->integer('views')->default(0);
             $table->dateTime('uploadTime', $precision = 0);
             $table->string('genre');
+            $table->string('movie');
 
         });
     }

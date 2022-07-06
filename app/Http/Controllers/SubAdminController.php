@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customers;
+use App\Models\Movies;
 
 class SubAdminController extends Controller
 {
@@ -14,6 +16,12 @@ class SubAdminController extends Controller
     public function AddMovies()
     {
         return view('SubAdmin.AddMovies');
+    }
+
+    public function Videos()
+    {
+        $data=Movies::all()->toArray();
+        return view('Customer.Videos')->With('data',$data);
     }
 
     public function UploadMovie(Request $req)
@@ -36,17 +44,18 @@ class SubAdminController extends Controller
             ]);
 
 
-            $name = $req->name.".".$req->file('movie')->getClientOriginalExtension();
-            $req->file('movie')->storeAs('movies',$name);
+            $movie = $req->name.".".$req->file('movie')->getClientOriginalExtension();
+            $req->file('movie')->storeAs('movies',$movie);
 
-            /*$user = new account();
-            $user->name = $req->name;
-            $user->email =$req->email;
-            $user->password =$req->password;
-            $user->save();
-            
-        return redirect('/');*/
+            $movies = new Movies;
+            $movies->name = $req->name;
+            $movies->description = $req->description;
+            $movies->genre = $req->genre;
+            $movies->movie = $movie;
+            $movies->uploadTime = date('Y-m-d H:i:s');
+            $movies->save();
 
+        return redirect()->route('SubAdmin.Videos');
     }
 
 }

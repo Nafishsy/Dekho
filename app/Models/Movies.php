@@ -13,8 +13,13 @@ class Movies extends Model
     public $timestamps = false;
 
 
-    public function customer()
+    public function MapCustomersMovies()
     {
-        return $this->belongsTo(Accounts::class,'c_id');
+        return $this->HasMany(Map_Customers_Movies::class,'m_id');
+    }
+
+    public function MyList()
+    {
+        return $this->HasMany(Mylist::class,'m_id');
     }
 }

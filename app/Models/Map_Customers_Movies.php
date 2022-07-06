@@ -15,12 +15,12 @@ class Map_Customers_Movies extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Accounts::class,'c_id');
+        return $this->belongsTo(Customers::class,'c_id');
     }
 
     public function movie()
     {
-        return $this->belongsTo(Accounts::class,'m_id');
+        return $this->belongsTo(Movies::class,'m_id');
     }
-    
+
 }

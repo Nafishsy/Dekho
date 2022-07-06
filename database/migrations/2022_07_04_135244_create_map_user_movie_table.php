@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('map_user_movie', function (Blueprint $table) {
             
-            $table->id();
-            
+            $table->id();            
             $table->foreignId('c_id')->constrained('customers');
             $table->foreignId('m_id')->constrained('movies');
 
