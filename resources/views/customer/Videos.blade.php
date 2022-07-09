@@ -1,3 +1,5 @@
 @foreach($data as $row)
-<video src="{{asset('movies')}}/{{$row['movie']}}"></video> <br>
+<center>
+<video controls src="{{asset('movies')}}/{{$row['movie']}}"></video> <br>
+</center>
 @endforeach
