@@ -29,7 +29,7 @@ class SubAdminController extends Controller
 
         $this->validate($req,
             [
-                "name"=>"required|max:20|min:5",
+                "name"=>"required|min:5",
                 "description"=>"required|min:10|max:2000",
                 "genre"=>"required|in:Action,Thriller,Comedy,Adventure,Documentary",
                 "movie"=>"required|mimes:mp4,m4vm,mov,mkv"
@@ -56,6 +56,13 @@ class SubAdminController extends Controller
             $movies->save();
 
         return redirect()->route('SubAdmin.Videos');
+    }
+
+    public function Movielist()
+    {
+        $data=Movies::all();
+        return view('SubAdmin.Movielist')->with('Movies',$data);
+
     }
 
 }
