@@ -2,7 +2,8 @@
 
     <a href="{{route('SubAdmin.AddMovies')}}">Add Movies</a>
 
-    <table>
-        movie list
-    </table>
+        
+    <a href="{{route('SubAdmin.VideoList')}}">movie list</a>
+
+
 </html>

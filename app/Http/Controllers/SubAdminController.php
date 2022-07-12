@@ -65,4 +65,13 @@ class SubAdminController extends Controller
 
     }
 
+    public function details($id)
+    {
+        $movie = Movies::where('id','=',$id)->first();
+        
+        return view('Movies.details')->with('movie',$movie);
+    }
+
+    
+
 }

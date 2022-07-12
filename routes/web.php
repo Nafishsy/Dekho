@@ -19,4 +19,4 @@ Route::get('/subadmin/addmovies',[SubAdminController::class,'AddMovies'])->name(
 Route::post('/subadmin/addmovies',[SubAdminController::class,'UploadMovie'])->name('SubAdmin.AddMovies.Upload');
 Route::get('/subadmin/Video',[SubAdminController::class,'Videos'])->name('SubAdmin.Videos');
 Route::get('/subadmin/Videolist',[SubAdminController::class,'MovieList'])->name('SubAdmin.VideoList');
-
+Route::get('/subadmin/movie/details/{id}/info',[SubAdminController::class,'details'])->name('Movie.details');
