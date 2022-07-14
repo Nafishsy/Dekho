@@ -20,3 +20,5 @@ Route::post('/subadmin/addmovies',[SubAdminController::class,'UploadMovie'])->na
 Route::get('/subadmin/Video',[SubAdminController::class,'Videos'])->name('SubAdmin.Videos');
 Route::get('/subadmin/Videolist',[SubAdminController::class,'MovieList'])->name('SubAdmin.VideoList');
 Route::get('/subadmin/movie/details/{id}/info',[SubAdminController::class,'details'])->name('Movie.details');
+Route::post('/subadmin/movie/details/{id}/info',[SubAdminController::class,'UpdateMovie'])->name('Movie.details.Edit');
+Route::get('/subadmin/movie/delete/{id}',[SubAdminController::class,'DeleteMovie'])->name('Movie.delete');

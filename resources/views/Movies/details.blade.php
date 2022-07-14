@@ -1,6 +1,10 @@
 <form method="post" action="" enctype="multipart/form-data">
         
     {{@csrf_field()}}
+        Movie ID: <input type="text" name="id" placeholder="Name"  readonly value="{{$movie->id}}"><br>
+        @error('name')
+            {{$message}}<br>
+        @enderror
         Movie Name: <input type="text" name="name" placeholder="Name" value="{{$movie->name}}"><br>
         @error('name')
             {{$message}}<br>
@@ -31,6 +35,6 @@
             {{$message}}<br>
         @enderror
         <br>
-        <input type="submit" value="Upload">
+        <input type="submit" value="EDIT">
         
     </form>
