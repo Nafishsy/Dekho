@@ -5,5 +5,7 @@
         
     <a href="{{route('SubAdmin.VideoList')}}">movie list</a>
 
+    <a href="{{route('Movie.Bills')}}">Billing Details</a>
+
 
 </html>

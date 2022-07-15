@@ -112,6 +112,28 @@ class SubAdminController extends Controller
         return redirect()->route('SubAdmin.VideoList');
     }
 
+    public function DownloadMovie($id){
+
+        $movie=Movies::where('id','=',$id)->first();
+        return response()->download(asset('movies').'/'.$movie->movie,$movie->movie);
+    }
+    
+    public function BillingDetails(){
+
+        $actives = Customers::where('status','=','Active')->count();
+        $bans = Customers::where('status','=','Banned')->count();
+        $inactives = Customers::where('status','=','Inactive')->count();
+        $bills['actives'] = $actives;        
+        $bills['bans'] = $bans;        
+        $bills['inactives'] = $inactives;        
+        $bills['total'] = $inactives+$actives+$bans;
+        
+        $customers = Customers::all();
+
+        return view('SubAdmin.BillingDetails')->with('Bills',$bills)
+                                            ->with('Customers',$customers);
+    }
+
     
 
 }

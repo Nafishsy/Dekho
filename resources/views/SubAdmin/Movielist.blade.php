@@ -14,13 +14,15 @@
         <td>{{$movie->name}}</td>
         <td>{{$movie->genre}}</td>
         <td>{{$movie->description}}</td>
-        <td> <center><video controls src="{{asset('movies')}}/{{$movie->movie}}"></video></center></td>
 
+        <td> <center><video controls src="{{asset('movies')}}/{{$movie->movie}}"></video></center></td>
         
         <td>
             <a href="{{route('Movie.details',['id'=>$movie->id])}}"><button>EDIT</button></a>
-            <a href="{{route('Movie.delete',['id'=>$movie->id])}}"><button>DELETE</button></a> 
-    </td>
+            <a href="{{route('Movie.delete',['id'=>$movie->id])}}"><button>DELETE</button></a>     
+        </td>
+
+        
 
     </tr>
 
