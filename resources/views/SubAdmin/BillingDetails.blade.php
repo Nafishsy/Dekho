@@ -4,6 +4,10 @@ table, th, td {
   border-collapse: collapse;
   text-align: center;
 }
+
+.w-5 {
+    display : none;
+}
 </style>
 
 <center>
@@ -13,7 +17,7 @@ Total accounts: {{$Bills['total']}} <br>
 Paid: {{number_format(($Bills['actives']/$Bills['total'])*100,2)}}%<br>
 Inactive: {{number_format(($Bills['inactives']/$Bills['total'])*100,2)}}%<br>
 Banned: {{number_format(($Bills['bans']/$Bills['total'])*100,2)}}%<br>
-
+<br>
 </center>
 
 
@@ -22,12 +26,16 @@ Banned: {{number_format(($Bills['bans']/$Bills['total'])*100,2)}}%<br>
     <th>Billing status</th>
     <th>Operation</th>
 
-    @foreach($Customers as $customer)
+    @foreach($Accounts as $account)
     <tr>
-        <td>{{$customer->c_id}}</td> <!-- Will use customer username from accounts table-->
-        <td>{{$customer->status}}</td>
-        <td><a href="{{route('Subadmin.Customer.Change',['id'=>$customer->id])}}"><button>Change Status</button></a></td>
+        <td>{{$account->username}}</td> <!-- Will use customer username from accounts table-->
+        <td>{{$account->status}}</td>
+        <td><a href="{{route('Subadmin.Customer.Change',['id'=>$account->id])}}"><button>Change Status</button></a></td>
     </tr>
     @endforeach()
 
+    
 </table>
+
+{{$Accounts->links()}}
+

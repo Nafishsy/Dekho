@@ -12,10 +12,14 @@ class Accounts extends Model
     protected $table = 'accounts';
     public $timestamps = false;
 
-
-    public function customers()
+    public function MapCustomersMovies()
     {
-        return $this->hasOne(Customers::class,'c_id');
+        return $this->HasMany(Map_Customers_Movies::class,'c_id');
+    }
+
+    public function MyList()
+    {
+        return $this->HasMany(Mylist::class,'c_id');
     }
 
 

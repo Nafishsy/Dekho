@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Customers;
+use App\Models\Accounts;
 use App\Models\Movies;
 
 class SubAdminController extends Controller
@@ -80,7 +80,7 @@ class SubAdminController extends Controller
                 "name"=>"required|min:5",
                 "description"=>"required|min:10|max:2000",
                 "genre"=>"required|in:Action,Thriller,Comedy,Adventure,Documentary",
-                "movie"=>"required|mimes:mp4,m4vm,mov,mkv"
+                "movie"=>"mimes:mp4,m4vm,mov,mkv"
 
             ],
         
@@ -91,10 +91,19 @@ class SubAdminController extends Controller
                 
             ]);
 
+            if($req->movie==NULL)
+            {
+            $movies = Movies::where('id','=',$req->id)->first();
+            $movies->name = $req->name;
+            $movies->description = $req->description;
+            $movies->genre = $req->genre;
+            $movies->uploadTime = date('Y-m-d H:i:s');
+            $movies->save();
+            }
+            else{
 
             $movie = $req->name.".".$req->file('movie')->getClientOriginalExtension();
             $req->file('movie')->storeAs('movies',$movie);
-
             $movies = Movies::where('id','=',$req->id)->first();
             $movies->name = $req->name;
             $movies->description = $req->description;
@@ -102,6 +111,8 @@ class SubAdminController extends Controller
             $movies->movie = $movie;
             $movies->uploadTime = date('Y-m-d H:i:s');
             $movies->save();
+            }
+            
 
         return redirect()->route('SubAdmin.VideoList');
     }
@@ -120,23 +131,22 @@ class SubAdminController extends Controller
     
     public function BillingDetails(){
 
-        $actives = Customers::where('status','=','Active')->count();
-        $bans = Customers::where('status','=','Banned')->count();
-        $inactives = Customers::where('status','=','Inactive')->count();
+        $actives = Accounts::where('status','=','Active')->count();
+        $bans = Accounts::where('status','=','Banned')->count();
+        $inactives = Accounts::where('status','=','Inactive')->count();
         $bills['actives'] = $actives;        
         $bills['bans'] = $bans;        
         $bills['inactives'] = $inactives;        
         $bills['total'] = $inactives+$actives+$bans;
         
-        $customers = Customers::all();
-
+        $Accounts = Accounts::paginate(20);
         return view('SubAdmin.BillingDetails')->with('Bills',$bills)
-                                            ->with('Customers',$customers);
+                                            ->with('Accounts',$Accounts);
     }
 
     public function StatusChange($id)
     {
-        $customer = Customers::where('id','=',$id)->first();
+        $customer = Accounts::where('id','=',$id)->first();
 
         return view('customer.details')->with('customer',$customer);
         
@@ -144,23 +154,23 @@ class SubAdminController extends Controller
 
     public function UpdateStatus(Request $req)
     {
-        $customer = Customers::where('id','=',$req->id)->first();
+        $customer = Accounts::where('id','=',$req->id)->first();
         $customer->status = $req->status;
         $customer->save();
 
 
 
 
-        $actives = Customers::where('status','=','Active')->count();
-        $bans = Customers::where('status','=','Banned')->count();
-        $inactives = Customers::where('status','=','Inactive')->count();
+        $actives = Accounts::where('status','=','Active')->count();
+        $bans = Accounts::where('status','=','Banned')->count();
+        $inactives = Accounts::where('status','=','Inactive')->count();
         $bills['actives'] = $actives;        
         $bills['bans'] = $bans;        
         $bills['inactives'] = $inactives;        
         $bills['total'] = $inactives+$actives+$bans;
-        $customers = Customers::all();
+        $Accounts = Accounts::paginate(20);
         return view('SubAdmin.BillingDetails')->with('Bills',$bills)
-                                              ->with('Customers',$customers);
+                                              ->with('Accounts',$Accounts);
     }
 
     

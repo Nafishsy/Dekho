@@ -18,14 +18,17 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $arr=array("Active","Inactive","Banned");
-        $bool=array(TRUE,FALSE);
-        for($i=1;$i<=1000;$i++){
 
-            DB::table('customers')->insert([
+        $bool=array(TRUE,FALSE);
+        for($i=1;$i<=40;$i++){
+
+            DB::table('accounts')->insert([
+                'username' => Str::random(5),
+                'email' => Str::random(5).'@gmail.com',
+                'password' => Hash::make('password'),
                 'payement' => $bool[array_rand($bool,1)],
                 'PayementDate' => date('Y-m-d H:i:s'),
                 'status' => $arr[array_rand($arr,1)],
-                'c_id' => $i,
             ]);
 
         }

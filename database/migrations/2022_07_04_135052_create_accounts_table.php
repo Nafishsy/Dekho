@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             
             $table->id();
+            $table->string('username');
+            $table->string('password');
+            $table->string('email');
+            $table->string('role')->default('Customer');  
             $table->boolean('Payement')->default(FALSE);
             $table->dateTime('PayementDate', $precision = 0);
             $table->string('status')->default('Inactive');
-            $table->bigInteger('c_id');
-            //$table->foreignId('c_id')->constrained('accounts');
             
         });
     }

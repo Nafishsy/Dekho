@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('map_customer_movie', function (Blueprint $table) {
             
             $table->id();            
-            $table->foreignId('c_id')->constrained('customers');
+            $table->foreignId('c_id')->constrained('accounts');
             $table->foreignId('m_id')->constrained('movies');
             $table->decimal('rating')->default(-1);
 
