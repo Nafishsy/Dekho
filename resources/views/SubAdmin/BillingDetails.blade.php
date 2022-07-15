@@ -2,6 +2,7 @@
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+  text-align: center;
 }
 </style>
 
@@ -19,11 +20,14 @@ Banned: {{number_format(($Bills['bans']/$Bills['total'])*100,2)}}%<br>
 <table width=100% border=1 collapse>
     <th>Username</th>
     <th>Billing status</th>
+    <th>Operation</th>
 
     @foreach($Customers as $customer)
     <tr>
         <td>{{$customer->c_id}}</td> <!-- Will use customer username from accounts table-->
         <td>{{$customer->status}}</td>
+        <td><a href="{{route('Subadmin.Customer.Change',['id'=>$customer->id])}}"><button>Change Status</button></a></td>
     </tr>
     @endforeach()
+
 </table>

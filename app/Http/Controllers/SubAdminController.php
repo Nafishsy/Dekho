@@ -113,7 +113,7 @@ class SubAdminController extends Controller
     }
 
     public function DownloadMovie($id){
-
+        //Not functional, gonna work on it later
         $movie=Movies::where('id','=',$id)->first();
         return response()->download(asset('movies').'/'.$movie->movie,$movie->movie);
     }
@@ -132,6 +132,35 @@ class SubAdminController extends Controller
 
         return view('SubAdmin.BillingDetails')->with('Bills',$bills)
                                             ->with('Customers',$customers);
+    }
+
+    public function StatusChange($id)
+    {
+        $customer = Customers::where('id','=',$id)->first();
+
+        return view('customer.details')->with('customer',$customer);
+        
+    }
+
+    public function UpdateStatus(Request $req)
+    {
+        $customer = Customers::where('id','=',$req->id)->first();
+        $customer->status = $req->status;
+        $customer->save();
+
+
+
+
+        $actives = Customers::where('status','=','Active')->count();
+        $bans = Customers::where('status','=','Banned')->count();
+        $inactives = Customers::where('status','=','Inactive')->count();
+        $bills['actives'] = $actives;        
+        $bills['bans'] = $bans;        
+        $bills['inactives'] = $inactives;        
+        $bills['total'] = $inactives+$actives+$bans;
+        $customers = Customers::all();
+        return view('SubAdmin.BillingDetails')->with('Bills',$bills)
+                                              ->with('Customers',$customers);
     }
 
     
