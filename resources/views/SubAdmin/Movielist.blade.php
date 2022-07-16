@@ -7,7 +7,14 @@
     <th>Operation</th>
 
 
-
+    <form method="post" action="" >
+    {{@csrf_field()}}
+        Search user: <input type="text" name="search" placeholder="Type movie title">
+        @error('search')
+            {{$message}}<br>
+        @enderror
+        <input type="submit" value="Search">
+    </form>
     
     @foreach($Movies as $movie)
     <tr>
@@ -15,7 +22,7 @@
         <td>{{$movie->name}}</td>
         <td>{{$movie->genre}}</td>
         <td>{{$movie->description}}</td>
-        <td><img src="{{asset('banners')}}/{{$movie->banner}}" alt=""></td>
+        <td><img src="{{asset('banners')}}/{{$movie->banner}}" width="350" height="350" alt="{{$movie->name}}"></td>
 
         <td> <center><video controls src="{{asset('movies')}}/{{$movie->movie}}"></video></center></td>
         

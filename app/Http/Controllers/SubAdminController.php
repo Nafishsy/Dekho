@@ -63,7 +63,7 @@ class SubAdminController extends Controller
             $movies->uploadTime = date('Y-m-d H:i:s');
             $movies->save();
 
-        return redirect()->route('SubAdmin.Videos');
+        return redirect()->route('SubAdmin.VideoList');
     }
 
     public function Movielist()
@@ -184,6 +184,25 @@ class SubAdminController extends Controller
         
         return view('SubAdmin.BillingDetails')->with('Bills',$bills)
                                               ->with('Accounts',$Accounts);
+    }
+
+    public function SearchMovie(Request $req)
+    {
+        $data=Movies::all();
+        return view('SubAdmin.Movielist')->with('Movies',$data);
+    }
+
+    public function SearchMovieSubmit(Request $req)
+    {
+        $this->validate($req,
+            [
+                "search"=>"required"
+            ]);
+
+            
+            $movies = Movies::where('name','Like',$req->search.'%')->paginate(3);
+            return view('SubAdmin.Movielist')->with('Movies',$movies);
+
     }
 
     
