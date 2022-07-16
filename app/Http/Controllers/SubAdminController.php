@@ -155,6 +155,22 @@ class SubAdminController extends Controller
         return view('SubAdmin.BillingDetails')->with('Bills',$bills)
                                             ->with('Accounts',$Accounts);
     }
+    
+    public function BillingDetailsSearch(Request $req){
+
+
+        $actives = Accounts::where('status','=','Active')->count();
+        $bans = Accounts::where('status','=','Banned')->count();
+        $inactives = Accounts::where('status','=','Inactive')->count();
+        $bills['actives'] = $actives;        
+        $bills['bans'] = $bans;        
+        $bills['inactives'] = $inactives;        
+        $bills['total'] = $inactives+$actives+$bans;
+        $Accounts = Accounts::where('username','Like',$req->search.'%')->paginate(20);
+
+        return view('SubAdmin.BillingDetails')->with('Bills',$bills)
+                                            ->with('Accounts',$Accounts);
+    }
 
     public function StatusChange($id)
     {
@@ -193,15 +209,9 @@ class SubAdminController extends Controller
     }
 
     public function SearchMovieSubmit(Request $req)
-    {
-        $this->validate($req,
-            [
-                "search"=>"required"
-            ]);
-
-            
-            $movies = Movies::where('name','Like',$req->search.'%')->paginate(3);
-            return view('SubAdmin.Movielist')->with('Movies',$movies);
+    {     
+        $movies = Movies::where('name','Like',$req->search.'%')->paginate(3);
+        return view('SubAdmin.Movielist')->with('Movies',$movies);
 
     }
 

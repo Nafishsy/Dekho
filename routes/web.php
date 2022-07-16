@@ -26,6 +26,7 @@ Route::post('/subadmin/movie/details/{id}/info',[SubAdminController::class,'Upda
 Route::get('/subadmin/movie/delete/{id}',[SubAdminController::class,'DeleteMovie'])->name('Movie.delete');
 Route::get('/subadmin/movie/download/{id}',[SubAdminController::class,'DownloadMovie'])->name('Movie.download');
 Route::get('/subadmin/bills',[SubAdminController::class,'BillingDetails'])->name('Movie.Bills');
+Route::post('/subadmin/bills',[SubAdminController::class,'BillingDetailsSearch'])->name('Movie.Bills.Search');
 Route::get('/subadmin/bills/change/{id}',[SubAdminController::class,'StatusChange'])->name('Subadmin.Customer.Change');
 Route::post('/subadmin/bills/change/{id}',[SubAdminController::class,'UpdateStatus'])->name('Subadmin.Customer.Update');
 //Route::get('/subadmin/movies/list/search',[SubAdminController::class,'SearchMovie'])->name('Subadmin.Movies.List.Search');
