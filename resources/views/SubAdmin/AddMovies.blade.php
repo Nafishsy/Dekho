@@ -25,9 +25,16 @@
         @enderror
 
         <br>
-        File: 
+        Movie File: 
         <input type="file" name="movie">
         @error('movie')
+            {{$message}}<br>
+        @enderror
+        <br>
+        <br>
+        Banner File: 
+        <input type="file" name="banner">
+        @error('banner')
             {{$message}}<br>
         @enderror
         <br>

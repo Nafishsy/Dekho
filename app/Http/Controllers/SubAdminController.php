@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Accounts;
 use App\Models\Movies;
 
+
 class SubAdminController extends Controller
 {
+    
+
     public function ManageMovies()
     {
         return view('SubAdmin.movieManage');
@@ -32,7 +35,8 @@ class SubAdminController extends Controller
                 "name"=>"required|min:5",
                 "description"=>"required|min:10|max:2000",
                 "genre"=>"required|in:Action,Thriller,Comedy,Adventure,Documentary",
-                "movie"=>"required|mimes:mp4,m4vm,mov,mkv"
+                "movie"=>"required|mimes:mp4,m4vm,mov,mkv",
+                "banner"=>"required|mimes:img,jpeg,gif,png"
 
             ],
         
@@ -47,11 +51,15 @@ class SubAdminController extends Controller
             $movie = $req->name.".".$req->file('movie')->getClientOriginalExtension();
             $req->file('movie')->storeAs('movies',$movie);
 
+            $banner = $req->name.".".$req->file('banner')->getClientOriginalExtension();
+            $req->file('banner')->storeAs('banners',$banner);
+
             $movies = new Movies;
             $movies->name = $req->name;
             $movies->description = $req->description;
             $movies->genre = $req->genre;
             $movies->movie = $movie;
+            $movies->banner = $banner;
             $movies->uploadTime = date('Y-m-d H:i:s');
             $movies->save();
 
@@ -80,7 +88,8 @@ class SubAdminController extends Controller
                 "name"=>"required|min:5",
                 "description"=>"required|min:10|max:2000",
                 "genre"=>"required|in:Action,Thriller,Comedy,Adventure,Documentary",
-                "movie"=>"mimes:mp4,m4vm,mov,mkv"
+                "movie"=>"mimes:mp4,m4vm,mov,mkv",
+                "banner"=>"mimes:img,jpeg,gif,png"
 
             ],
         
@@ -104,6 +113,9 @@ class SubAdminController extends Controller
 
             $movie = $req->name.".".$req->file('movie')->getClientOriginalExtension();
             $req->file('movie')->storeAs('movies',$movie);
+
+
+
             $movies = Movies::where('id','=',$req->id)->first();
             $movies->name = $req->name;
             $movies->description = $req->description;
@@ -169,6 +181,7 @@ class SubAdminController extends Controller
         $bills['inactives'] = $inactives;        
         $bills['total'] = $inactives+$actives+$bans;
         $Accounts = Accounts::paginate(20);
+        
         return view('SubAdmin.BillingDetails')->with('Bills',$bills)
                                               ->with('Accounts',$Accounts);
     }

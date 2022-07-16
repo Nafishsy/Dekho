@@ -2,6 +2,7 @@
     <th>Movie Name</th>
     <th>Movie Genre</th>
     <th>Description</th>
+    <th>Banner</th>
     <th>Movie</th>
     <th>Operation</th>
 
@@ -14,6 +15,7 @@
         <td>{{$movie->name}}</td>
         <td>{{$movie->genre}}</td>
         <td>{{$movie->description}}</td>
+        <td><img src="{{asset('banners')}}/{{$movie->banner}}" alt=""></td>
 
         <td> <center><video controls src="{{asset('movies')}}/{{$movie->movie}}"></video></center></td>
         

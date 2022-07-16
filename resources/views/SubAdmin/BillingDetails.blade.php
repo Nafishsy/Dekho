@@ -36,6 +36,6 @@ Banned: {{number_format(($Bills['bans']/$Bills['total'])*100,2)}}%<br>
 
     
 </table>
-
 {{$Accounts->links()}}
+
 

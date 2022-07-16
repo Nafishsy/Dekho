@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubAdminController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,5 @@ Route::get('/subadmin/movie/download/{id}',[SubAdminController::class,'DownloadM
 Route::get('/subadmin/bills',[SubAdminController::class,'BillingDetails'])->name('Movie.Bills');
 Route::get('/subadmin/bills/change/{id}',[SubAdminController::class,'StatusChange'])->name('Subadmin.Customer.Change');
 Route::post('/subadmin/bills/change/{id}',[SubAdminController::class,'UpdateStatus'])->name('Subadmin.Customer.Update');
+Route::get('/mail',[MailController::class,'mail'])->name('Mail.send');
+Route::post('/mail',[MailController::class,'sentmail'])->name('Mail.sentt');

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->dateTime('uploadTime', $precision = 0);
             $table->string('genre');
             $table->string('movie');
+            $table->string('banner');
 
         });
     }
