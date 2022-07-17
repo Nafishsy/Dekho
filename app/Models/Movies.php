@@ -10,7 +10,6 @@ class Movies extends Model
     use HasFactory;
     
     protected $table = 'movies';
-    public $timestamps = false;
 
 
     public function MapCustomersMovies()

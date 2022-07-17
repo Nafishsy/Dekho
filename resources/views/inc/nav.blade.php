@@ -76,7 +76,7 @@
                                             @foreach($Movies as $movie)
                                             <tr>
                                                 <td><a href="{{route('Movie.details',['id'=>$movie->id])}}"><button>{{$movie->name}}</button></a></td>
-                                                <td>{{$movie->uploadTime}}</td>
+                                                <td>{{$movie->created_at->diffForHumans()}}</td>
                                                 
 
                                             </tr>

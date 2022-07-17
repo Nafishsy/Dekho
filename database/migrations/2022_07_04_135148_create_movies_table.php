@@ -20,7 +20,6 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('rating', $precision = 2, $scale = 1)->default(0);
             $table->integer('views')->default(0);
-            $table->dateTime('uploadTime', $precision = 0);
             $table->string('genre');
             $table->string('movie');
             $table->string('banner');
