@@ -24,7 +24,7 @@
         <td>{{$movie->description}}</td>
         <td><img src="{{asset('banners')}}/{{$movie->banner}}" width="350" height="350" alt="{{$movie->name}}"></td>
 
-        <td> <center><video controls src="{{asset('movies')}}/{{$movie->movie}}"></video></center></td>
+        <td> <center><video controls src="{{asset('movies')}}/{{$movie->movie}}" width="350" height="350"></video></center></td>
         
         <td>
             <a href="{{route('Movie.details',['id'=>$movie->id])}}"><button>EDIT</button></a>

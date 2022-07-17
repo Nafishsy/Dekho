@@ -3,17 +3,23 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubAdminController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\UsersController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/home',[UsersController::class,'home'])->name('home');
+Route::get('/search',[UsersController::class,'search'])->name('search');
+//login
+Route::get('/login',[UsersController::class,'login'])->name('login');
+//logout
+Route::get('/logout',[UsersController::class,'logout'])->name('logout');
+Route::get('DropdownSearch/{id}',[UsersController::class,'DropdownSearch'])->name('DropdownSearch');
+Route::get('Watchmovie/{id}',[UsersController::class,'Watchmovie'])->name('Watchmovie');
+
+
+
+
+
+
+
 
 Route::get('/',[SubAdminController::class,'ManageMovies'])->name('SubAdmin.movieManage');
 Route::get('/subadmin/addmovies',[SubAdminController::class,'AddMovies'])->name('SubAdmin.AddMovies');

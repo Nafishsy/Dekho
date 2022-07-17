@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('genre');
             $table->string('movie');
             $table->string('banner');
+            $table->timestamps();
 
         });
     }
