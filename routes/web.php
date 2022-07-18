@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubAdminController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\accountsController;
+use App\Http\Controllers\adminController;
 
 Route::get('/home',[UsersController::class,'home'])->name('home');
 Route::get('/search',[UsersController::class,'search'])->name('search');
@@ -37,3 +39,30 @@ Route::get('/subadmin/bills/change/{id}',[SubAdminController::class,'StatusChang
 Route::post('/subadmin/bills/change/{id}',[SubAdminController::class,'UpdateStatus'])->name('Subadmin.Customer.Update');
 //Route::get('/subadmin/movies/list/search',[SubAdminController::class,'SearchMovie'])->name('Subadmin.Movies.List.Search');
 
+//anik
+
+Route::get('/',[accountsController::class,'publicLogin'])->name('public.login');
+Route::post('/',[accountsController::class,'publicLoginSubmit'])->name('public.login.submit');
+Route::get('/Logout',[accountsController::class,'publicLogout'])->name('public.logout');
+Route::get('/Registration',[accountsController::class,'publicRegistration'])->name('public.registration');
+Route::post('/Registration',[accountsController::class,'publicRegistrationSubmit'])->name('public.registration.submit');
+
+
+Route::get('/ForgotPassword',[accountsController::class,'publicForgotPassword'])->name('public.forgotPassword');
+Route::post('/ForgotPassword',[accountsController::class,'publicOTP'])->name('public.forgotPassword.otp.sent');
+Route::get('/OTP/submit',[accountsController::class,'viewFogretPass'])->name('public.viewFogretPass');
+Route::post('/OTP/submit',[accountsController::class,'publicOTPcheck'])->name('public.OTPcheck.submit');
+
+Route::get('/public/PassChange',[accountsController::class,'ViewChangePass'])->name('public.PassChange');
+Route::post('/public/PassChange',[accountsController::class,'PassChange'])->name('public.PassChange.submit');
+
+
+Route::get('/Admin/Dashboard',[adminController::class,'adminDashboard'])->name('admin.dashboard')->middleware('adminLoginCheckMiddleware');
+Route::get('/Admin/Profile',[adminController::class,'adminProfile'])->name('admin.profile')->middleware('adminLoginCheckMiddleware');
+Route::get('/Admin/ChangePassword',[adminController::class,'adminChangePassword'])->name('admin.changePassword')->middleware('adminLoginCheckMiddleware');
+Route::post('/Admin/ChangePassword',[adminController::class,'adminChangePasswordSubmit'])->name('admin.changePassword.submit')->middleware('adminLoginCheckMiddleware');
+Route::get('/Admin/Dashboard',[adminController::class,'adminCheckCustomersMovies'])->name('admin.checkCustomersMovies')->middleware('adminLoginCheckMiddleware');
+Route::get('/Admin/CustomerList',[adminController::class,'adminUserList'])->name('admin.userlist')->middleware('adminLoginCheckMiddleware');
+Route::post('/Admin/CustomerList',[adminController::class,'adminSearchUsersSubmit'])->name('admin.searchUsers.submit')->middleware('adminLoginCheckMiddleware');;
+Route::get('/Admin/CustomerList/{id}/details',[adminController::class,'adminChangeRole'])->name('admin.changeRole')->middleware('adminLoginCheckMiddleware');
+Route::post('/Admin/CustomerList/{id}/details',[adminController::class,'adminChangeRoleSubmit'])->name('admin.changeRole.submit')->middleware('adminLoginCheckMiddleware');
