@@ -24,12 +24,20 @@ class accountsController extends Controller
 
             $checkUser = accountsModel::where('username','=',$req->username)->where('password','=',$req->password)->first();
             if($checkUser){
+                
                 session()->put('username',$checkUser->username);
                 session()->put('email',$checkUser->email);
                 session()->put('password',$checkUser->password);
                 session()->put('role',$checkUser->role);
+
                 if($checkUser->role == 'Admin'){
                     return redirect()->route("admin.checkCustomersMovies");
+                }
+                else if($checkUser->role == 'SubAdmin'){
+                    return redirect()->route("SubAdmin.movieManage");
+                }
+                else{
+                    return redirect()->route("home");
                 }
             }
             else{

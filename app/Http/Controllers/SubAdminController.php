@@ -60,7 +60,6 @@ class SubAdminController extends Controller
             $movies->genre = $req->genre;
             $movies->movie = $movie;
             $movies->banner = $banner;
-            $movies->uploadTime = date('Y-m-d H:i:s');
             $movies->save();
 
         return redirect()->route('SubAdmin.VideoList');
@@ -106,7 +105,6 @@ class SubAdminController extends Controller
             $movies->name = $req->name;
             $movies->description = $req->description;
             $movies->genre = $req->genre;
-            $movies->uploadTime = date('Y-m-d H:i:s');
             $movies->save();
             }
             else{
@@ -121,7 +119,6 @@ class SubAdminController extends Controller
             $movies->description = $req->description;
             $movies->genre = $req->genre;
             $movies->movie = $movie;
-            $movies->uploadTime = date('Y-m-d H:i:s');
             $movies->save();
             }
             

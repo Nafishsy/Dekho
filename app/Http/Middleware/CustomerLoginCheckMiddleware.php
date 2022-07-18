@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class adminLoginCheckMiddleware
+class CustomerLoginCheckMiddleware
 {
     /**
      * Handle an incoming request.
@@ -18,11 +18,11 @@ class adminLoginCheckMiddleware
     {
         if(session()->has('username')){
 
-            if (session()->get('role')=='Admin') {
+            if (session()->get('role')=='Customer') {
                 return $next($request);
             }
             else {
-                session()->flash("loginCheckMessage","You are not Admin");
+                session()->flash("loginCheckMessage","You are not an Customer");
                 return redirect()->route('public.login');
                 }
             
