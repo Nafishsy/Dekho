@@ -1,4 +1,5 @@
-<html>
+@extends('layouts.afterLoginLayoutSubAdmin')
+@section('content')
     <form method="post" action="" enctype="multipart/form-data">
         
     {{@csrf_field()}}
@@ -41,4 +42,4 @@
         <input type="submit" value="Upload">
         
     </form>
-</html>
+    @endsection

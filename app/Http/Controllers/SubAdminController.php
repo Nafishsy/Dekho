@@ -13,7 +13,13 @@ class SubAdminController extends Controller
 
     public function ManageMovies()
     {
-        return view('SubAdmin.movieManage');
+        $data=Movies::all();
+        return view('SubAdmin.movieManage')->with('Movies',$data);
+    }
+
+    public function SubAdminProfile()
+    {
+        return view('SubAdmin.profile');
     }
 
     public function AddMovies()
@@ -132,10 +138,10 @@ class SubAdminController extends Controller
         return redirect()->route('SubAdmin.VideoList');
     }
 
-    public function DownloadMovie($id){
+    public function WatchMovie($id){
         //Not functional, gonna work on it later
         $movie=Movies::where('id','=',$id)->first();
-        return response()->download(asset('movies').'/'.$movie->movie,$movie->movie);
+        return view('Subadmin.MovieWatch')->With('movie',$movie);
     }
     
     public function BillingDetails(){
