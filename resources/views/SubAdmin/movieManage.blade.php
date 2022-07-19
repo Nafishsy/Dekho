@@ -36,14 +36,23 @@
         @if ($loop->first)
         <div class="item active">
         <a href="{{route('Movie.watch',['id'=>$movie->id])}}" target="_self">
-        <img src="{{asset('banners')}}/{{$movie->banner}}" alt="Los Angeles" style="width:100%;">
+        <img src="{{asset('banners')}}/{{$movie->banner}}" alt="{{$movie->name}}" style="width:100%;" width="350" height="350">
+        <div class="carousel-caption">
+          <h3>"{{$movie->name}}"</h3>
+          <p>"{{$movie->description}}"</p>
+        </div>
         </a>
         </div>
         
         @else
         <div class="item">
         <a href="{{route('Movie.watch',['id'=>$movie->id])}}" target="_self">
-        <img src="{{asset('banners')}}/{{$movie->banner}}" alt="Chicago" style="width:100%;">
+        <img src="{{asset('banners')}}/{{$movie->banner}}" alt="{{$movie->name}}" style="width:100%;" width="350" height="350">
+        <div class="carousel-caption">
+          <h3>"{{$movie->name}}"</h3>
+          <p>"{{$movie->description}}"</p>
+        </div>
+        </a>
         </div>
         @endif
       @endforeach
