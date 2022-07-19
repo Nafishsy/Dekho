@@ -24,7 +24,7 @@ class accountsController extends Controller
 
             $checkUser = accountsModel::where('username','=',$req->username)->where('password','=',$req->password)->first();
             if($checkUser){
-                
+                session()->put('id',$checkUser->id);
                 session()->put('username',$checkUser->username);
                 session()->put('email',$checkUser->email);
                 session()->put('password',$checkUser->password);
