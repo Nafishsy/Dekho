@@ -70,7 +70,7 @@ class UsersController extends Controller
     public function addlist($id){
         
         
-        $moviecheck=Mylist::where('m_id','=',$id)->first();
+        $moviecheck=Mylist::where('m_id','=',$id)->where('c_id','=',session()->get('id'))->first();
 
         if($moviecheck==null)
         {
