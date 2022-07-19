@@ -48,7 +48,7 @@ class accountsController extends Controller
 
     function publicLogout(){
         session()->flush();
-        return view("public.login");
+        return redirect()->route("public.login");
     }
 
     function publicRegistration(){

@@ -1,5 +1,12 @@
+@extends('layouts.afterLoginLayoutSubAdmin')
+@section('content')
 <style>
-table, th, td {
+.Bill table{
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+.Bill td{
   border: 1px solid black;
   border-collapse: collapse;
   text-align: center;
@@ -9,8 +16,6 @@ table, th, td {
     display : none;
 }
 </style>
-@extends('layouts.afterLoginLayoutSubAdmin')
-@section('content')
 <center>
 
 <h1>Billing report</h1>
@@ -30,7 +35,7 @@ Banned: {{number_format(($Bills['bans']/$Bills['total'])*100,2)}}%<br>
         <input type="submit" value="Search">
     </form>
     
-<table width=100% border=1 collapse>
+<table class="Bill" width=100% border=1 collapse >
     <th>Username</th>
     <th>Billing status</th>
     <th>Operation</th>
