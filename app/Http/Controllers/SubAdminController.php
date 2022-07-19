@@ -7,12 +7,12 @@ use App\Models\Accounts;
 use App\Models\Movies;
 
 
+
 class SubAdminController extends Controller
 {
-    
 
     public function ManageMovies()
-    {
+    {        
         $data=Movies::all();
         return view('SubAdmin.movieManage')->with('Movies',$data);
     }

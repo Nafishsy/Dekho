@@ -8,6 +8,7 @@ use App\Models\moviesModel;
 use App\Models\customersMoviesModel;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ForgetPassword;
+use Carbon\Carbon;
 
 class accountsController extends Controller
 {
@@ -102,6 +103,9 @@ class accountsController extends Controller
             $otp=implode("",$otp);
 
             session()->put('OTP', $otp);
+            
+            $start = Carbon::now();
+            session()->put('startTime',$start);
             session()->put('F_email',$req->email);          
 
             Mail::to($req->email)->send(new ForgetPassword($otp));  
@@ -118,15 +122,26 @@ class accountsController extends Controller
     public function publicOTPcheck(Request $req)
     {
         
+        
         if (session()->get('OTP')==$req->otp) {
             session()->forget('OTP');
             return redirect()->route('public.PassChange');
         }
         else
         {
-            session()->flash('OTP', 'OTP not matched, send OTP again');
-            session()->forget('F_email');
-            return redirect()->route("public.login");
+            $end = Carbon::now();
+            if(session()->get('startTime')->diffInMinutes($end)>'5')
+            {
+                session()->flash('OTP', 'OTP not matched, send OTP again');
+                session()->forget('F_email');
+                return redirect()->route("public.login");
+            }
+            else{
+                //return redirect()->route("public.viewFogretPass");
+                session()->flash('msg', "Special message goes here");
+                return back();
+            }           
+            
         }
     }
 

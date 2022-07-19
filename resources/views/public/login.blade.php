@@ -5,6 +5,9 @@
 
     {{Session::get('loginFailedMessage')}}
     {{Session::get('loginCheckMessage')}}
+    @if (session()->has('OTP'))
+    <p1 style="color: red;"> Enter your otp again </p1>
+    @endif
 
     <div>
         <form method="post" action="">
