@@ -69,11 +69,21 @@ class UsersController extends Controller
 
     public function addlist($id){
         
-        $persionId=session()->get('id');
-        $data = new Mylist();
-        $data->c_id = $persionId;
-        $data->m_id =$id;
-        $data->save();
+        
+        $moviecheck=Mylist::where('m_id','=',$id)->first();
+
+        if($moviecheck==null)
+        {
+            $persionId=session()->get('id');
+            $data = new Mylist();
+            $data->c_id = $persionId;
+            $data->m_id =$id;
+            $data->save();
+        }
+        else{
+            
+
+        }
         return redirect()->route('home');
     }
 
