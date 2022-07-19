@@ -7,13 +7,13 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\accountsController;
 use App\Http\Controllers\adminController;
 
-Route::get('/home',[UsersController::class,'home'])->name('home');
-Route::get('/search',[UsersController::class,'search'])->name('search');
-Route::get('/logout',[UsersController::class,'logout'])->name('logout');
-Route::get('DropdownSearch/{id}',[UsersController::class,'DropdownSearch'])->name('DropdownSearch');
-Route::get('addlist/{id}',[UsersController::class,'addlist'])->name('addlist');
-Route::get('RemoveMylistData/{id}',[UsersController::class,'RemoveMylistData'])->name('RemoveMylistData');
-Route::get('/movie/watch/{id}',[UsersController::class,'WatchMovie'])->name('User.watch');
+Route::get('/home',[UsersController::class,'home'])->name('home')->middleware('CustomerLoginCheckMiddleware');
+Route::get('/search',[UsersController::class,'search'])->name('search')->middleware('CustomerLoginCheckMiddleware');
+Route::get('/logout',[UsersController::class,'logout'])->name('logout')->middleware('CustomerLoginCheckMiddleware');
+Route::get('DropdownSearch/{id}',[UsersController::class,'DropdownSearch'])->name('DropdownSearch')->middleware('CustomerLoginCheckMiddleware');
+Route::get('addlist/{id}',[UsersController::class,'addlist'])->name('addlist')->middleware('CustomerLoginCheckMiddleware');
+Route::get('RemoveMylistData/{id}',[UsersController::class,'RemoveMylistData'])->name('RemoveMylistData')->middleware('CustomerLoginCheckMiddleware');
+Route::get('/movie/watch/{id}',[UsersController::class,'WatchMovie'])->name('User.watch')->middleware('CustomerLoginCheckMiddleware');
 
 
 
