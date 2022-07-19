@@ -34,6 +34,52 @@
                             <li><a class="dropdown-item" href="{{route('DropdownSearch',['id'=>'Comedy'])}}">Comedy</a></li>
                         </ul>
                     </li>
+
+                    @if(session()->has('username'))
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModa">
+                        My List
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">My Favorite List</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <table class="table">
+                                        <tr>
+                                            <th width="100px">Name</th>
+                                            <th width="100px">.</th>
+
+                                        </tr>
+
+                                        @foreach($favorites as $favorite)
+                                        <tr>
+                                            <td><a href=""><button>{{$favorite->m_name}}</button></a></td>
+                                            <td><a href="{{route('RemoveMylistData',['id'=>$favorite->m_id])}}"><button>Remove</button></a></td>
+
+                                        </tr>
+                                        @endforeach
+
+
+                                    </table>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </li>
+                    @endif
+
                 </ul>
 
 
@@ -46,10 +92,10 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
 
-                @if(session()->has('id'))
+                @if(session()->has('username'))
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">{{session()->get('id')}}</a>
+                        <a class="nav-link active" aria-current="page" href="#">{{session()->get('username')}}</a>
                     </li>
                     <li class="nav-item">
                         <!-- Button trigger modal -->
@@ -77,7 +123,7 @@
                                             <tr>
                                                 <td><a href="{{route('Movie.details',['id'=>$movie->id])}}"><button>{{$movie->name}}</button></a></td>
                                                 <td>{{$movie->created_at->diffForHumans()}}</td>
-                                                
+
 
                                             </tr>
                                             @endforeach
@@ -92,8 +138,9 @@
                             </div>
                         </div>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('logout')}}">Logout</a>
+                        <a class="nav-link" href="{{route('public.login')}}">Logout</a>
                     </li>
                 </ul>
 

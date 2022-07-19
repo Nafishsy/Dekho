@@ -1,36 +1,6 @@
 @extends('layout.layout1')
 @section('content')
-<h1>home:{{session()->get('id')}}</h1>
-
-
-<table border='1' width='100%'>
-  <th>Movie Name</th>
-  <th>Movie Genre</th>
-  <th>Description</th>
-  <th>Movie</th>
-  <th>Operation</th>
-
-
-
-
-  @foreach($Movies as $movie)
-  <tr>
-
-    <td>{{$movie->name}}</td>
-    <td>{{$movie->genre}}</td>
-    <td>{{$movie->description}}</td>
-
-    <td>
-      <center><video controls src="{{asset('movies')}}/{{$movie->movie}}" width="350" height="350"></video></center>
-    </td>
-
-    <td>
-      <a href="{{route('Movie.details',['id'=>$movie->id])}}"><button>EDIT</button></a>
-      <a href="{{route('Movie.delete',['id'=>$movie->id])}}"><button>DELETE</button></a>
-    </td>
-  </tr>
-  @endforeach
-</table>
+<h1>{{session()->get('id')}}</h1>
 <div class="row">
   @foreach($Movies as $movie)
 
@@ -40,7 +10,7 @@
 
         <div class="embed-responsive embed-responsive-16by9">
           <!-- <video class="embed-responsive-item" controls src="{{asset('movies')}}/{{$movie->movie}}" allowfullscreen></video> -->
-          ttt<img src="{{asset('banners')}}/{{$movie->banner}}" width="350" height="350" alt="{{$movie->name}}">
+          <img src="{{asset('banners')}}/{{$movie->banner}}" width="350" height="350" alt="{{$movie->name}}">
         </div>
 
         @if(session()->has('id'))
@@ -72,9 +42,17 @@
         <p>Rating: {{$movie->rating}}</p>
         <p>Rating: {{$movie->id}}</p>
 
+
+        
+        <button type="button" class="">
+        <a class="" href="{{route('addlist',['name'=>$movie->name,'id'=>$movie->id])}}">Add list</a>         
+        </button>
+
+
       </div>
     </div>
   </div>
   @endforeach
 </div>
+
 @endsection

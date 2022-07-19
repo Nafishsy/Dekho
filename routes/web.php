@@ -9,13 +9,11 @@ use App\Http\Controllers\adminController;
 
 Route::get('/home',[UsersController::class,'home'])->name('home');
 Route::get('/search',[UsersController::class,'search'])->name('search');
-//login
-Route::get('/login',[UsersController::class,'login'])->name('login');
-//logout
 Route::get('/logout',[UsersController::class,'logout'])->name('logout');
 Route::get('DropdownSearch/{id}',[UsersController::class,'DropdownSearch'])->name('DropdownSearch');
 Route::get('Watchmovie/{id}',[UsersController::class,'Watchmovie'])->name('Watchmovie');
-
+Route::get('addlist/{name}/{id}',[UsersController::class,'addlist'])->name('addlist');
+Route::get('RemoveMylistData/{id}',[UsersController::class,'RemoveMylistData'])->name('RemoveMylistData');
 
 
 //Subadmin shuru
