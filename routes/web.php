@@ -31,7 +31,7 @@ Route::post('/subadmin/Videolist',[SubAdminController::class,'SearchMovieSubmit'
 Route::get('/subadmin/movie/details/{id}/info',[SubAdminController::class,'details'])->name('Movie.details')->middleware('SubAdminLoginCheckMiddleware');
 Route::post('/subadmin/movie/details/{id}/info',[SubAdminController::class,'UpdateMovie'])->name('Movie.details.Edit')->middleware('SubAdminLoginCheckMiddleware');
 Route::get('/subadmin/movie/delete/{id}',[SubAdminController::class,'DeleteMovie'])->name('Movie.delete')->middleware('SubAdminLoginCheckMiddleware');
-Route::get('/subadmin/movie/download/{id}',[SubAdminController::class,'DownloadMovie'])->name('Movie.download')->middleware('SubAdminLoginCheckMiddleware');
+Route::get('/subadmin/movie/watch/{id}',[SubAdminController::class,'WatchMovie'])->name('Movie.watch')->middleware('SubAdminLoginCheckMiddleware');
 Route::get('/subadmin/bills',[SubAdminController::class,'BillingDetails'])->name('Movie.Bills')->middleware('SubAdminLoginCheckMiddleware');
 Route::post('/subadmin/bills',[SubAdminController::class,'BillingDetailsSearch'])->name('Movie.Bills.Search')->middleware('SubAdminLoginCheckMiddleware');
 Route::get('/subadmin/bills/change/{id}',[SubAdminController::class,'StatusChange'])->name('Subadmin.Customer.Change')->middleware('SubAdminLoginCheckMiddleware');

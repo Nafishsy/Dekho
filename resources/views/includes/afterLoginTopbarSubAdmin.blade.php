@@ -14,6 +14,7 @@
 
     <tr>
         <td>
+        <a href="{{route('SubAdmin.movieManage')}}">Home</a>
         <a href="{{route('SubAdmin.AddMovies')}}">Add Movies</a>
         <a href="{{route('SubAdmin.VideoList')}}">Manage Movies</a>
         <a href="{{route('Movie.Bills')}}">Billing report</a>
