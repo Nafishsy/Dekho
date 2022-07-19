@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Accounts;
 use App\Models\Movies;
+use App\Models\Mylist;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,24 +12,20 @@ class UsersController extends Controller
 {
     function login()
     {
-
-          
-           $id='nn';
-           session()->put('id',$id);
-           return redirect()->route('home');
+           return redirect()->route('public.login');
             
     }
     function logout(){
-        session()->forget('id');
-       
+        session()->flush();
         return redirect()->route('home');
     }
 
     function home(){
-
+        $persionId=session()->get('id');
+        $favorite= Mylist::where('c_id','=',$persionId)->get();
         $data=Movies::all();
         
-        return view('home')->with('Movies',$data);
+        return view('home')->with('Movies',$data)->with('favorites',$favorite);
         
     }
     public function search(Request $request){
@@ -41,7 +38,12 @@ class UsersController extends Controller
 
         $data=Movies::orderBy('id','desc')
        ->where('name','like','%'.$search_textl .'%')->get();
-       return view('search')->with('Movies',$data);
+       
+       $persionId=session()->get('id');
+       $favorite= Mylist::where('c_id','=',$persionId)->get();
+   
+
+       return view('search')->with('Movies',$data)->with('favorites',$favorite);
         
         
     }
@@ -49,10 +51,12 @@ class UsersController extends Controller
         
        
         $search_textl=$id;
-
         $data=Movies::orderBy('id','desc')
        ->where('genre','like','%'.$search_textl .'%')->get();
-        return view('search')->with('Movies',$data);
+
+        $persionId=session()->get('id');
+        $favorite= Mylist::where('c_id','=',$persionId)->get();
+        return view('search')->with('Movies',$data)->with('favorites',$favorite);
         
         
     }
@@ -61,5 +65,22 @@ class UsersController extends Controller
         $movie= Movies::where('id','=',$id)->first();
         $data=$movie->name;
         return view('Users.watchmovie',compact('data'));
+    }
+
+    public function addlist($name,$id){
+        
+        $persionId=session()->get('id');
+        $data = new Mylist();
+        $data->c_id = $persionId;
+        $data->m_id =$id;
+        $data->m_name =$name;
+        $data->save();
+        return redirect()->route('home');
+    }
+
+
+    public function RemoveMylistData($id){
+        Mylist::where('m_id','=',$id)->Delete();
+        return redirect()->route('home');
     }
 }
