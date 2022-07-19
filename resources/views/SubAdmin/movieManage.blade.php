@@ -15,8 +15,7 @@
 
   
 
- <div class="container">
-  <h2>Dekho</h2>  
+ <div class="container"> 
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">

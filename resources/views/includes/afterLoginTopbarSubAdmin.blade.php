@@ -2,7 +2,7 @@
 <table width="100%">
     <tr>
         <td align="right">
-            <h1>Welcome</h1><a href="{{route('SubAdmin.profile')}}"><h1> {{Session::get('username')}}</h1></a>
+            <h1>Dekho</h1><a href="{{route('SubAdmin.profile')}}"><h1> {{Session::get('username')}}</h1></a>
         </td>
     </tr>
 
