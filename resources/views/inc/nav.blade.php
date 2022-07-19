@@ -60,7 +60,7 @@
 
                                         @foreach($favorites as $favorite)
                                         <tr>
-                                            <td><a href=""><button>{{$favorite->m_name}}</button></a></td>
+                                            <td><a href=""><button>{{$favorite->movie->name}}</button></a></td>
                                             <td><a href="{{route('RemoveMylistData',['id'=>$favorite->m_id])}}"><button>Remove</button></a></td>
 
                                         </tr>

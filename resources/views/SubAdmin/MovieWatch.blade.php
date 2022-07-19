@@ -10,6 +10,6 @@ p{
 
  </style>
 <video controls src="{{asset('movies')}}/{{$movie->movie}}" width="100%" height="50%"></video>
-Name:<h4>{{$movie->name}}</h4>
+<h4>Name:{{$movie->name}}</h4>
 <img src="{{asset('banners')}}/{{$movie->banner}}" width="20%" height="25%" alt="{{$movie->name}}">
-Description:<p>{{$movie->description}}</p>
+<p>Description:{{$movie->description}}</p>

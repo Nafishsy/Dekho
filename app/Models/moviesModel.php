@@ -15,4 +15,5 @@ class moviesModel extends Model
     protected $table = "movies";
     protected $primaryKey = "id";
     public $timestamps=false;
+    
 }

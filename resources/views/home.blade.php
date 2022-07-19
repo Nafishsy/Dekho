@@ -45,7 +45,7 @@
 
         
         <button type="button" class="">
-        <a class="" href="{{route('addlist',['name'=>$movie->name,'id'=>$movie->id])}}">Add list</a>         
+        <a class="" href="{{route('addlist',['id'=>$movie->id])}}">Add list</a>         
         </button>
 
 

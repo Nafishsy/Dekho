@@ -22,4 +22,5 @@ class Mylist extends Model
         return $this->belongsTo(Movies::class,'m_id');
     }
 
+
 }

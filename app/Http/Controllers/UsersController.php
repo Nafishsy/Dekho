@@ -67,13 +67,12 @@ class UsersController extends Controller
         return view('Users.watchmovie',compact('data'));
     }
 
-    public function addlist($name,$id){
+    public function addlist($id){
         
         $persionId=session()->get('id');
         $data = new Mylist();
         $data->c_id = $persionId;
         $data->m_id =$id;
-        $data->m_name =$name;
         $data->save();
         return redirect()->route('home');
     }
