@@ -13,7 +13,8 @@ class SubAdminController extends Controller
 
     public function ManageMovies()
     {
-        return view('SubAdmin.movieManage');
+        $data=Movies::all();
+        return view('SubAdmin.movieManage')->with('Movies',$data);
     }
 
     public function SubAdminProfile()
