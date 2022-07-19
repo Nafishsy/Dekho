@@ -14,7 +14,7 @@
         </div>
 
         @if(session()->has('id'))
-        <a href="{{route('Watchmovie',['id'=>$movie->id])}}" class="btn-primary">Watch Now</a>
+        <a href="{{route('User.watch',['id'=>$movie->id])}}" class="btn-primary">Watch Now</a>
         @else
         <!-- Button trigger modal -->
         <button type="button" class="" data-bs-toggle="modal" data-bs-target="#exampleModal">

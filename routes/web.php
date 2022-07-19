@@ -11,9 +11,10 @@ Route::get('/home',[UsersController::class,'home'])->name('home');
 Route::get('/search',[UsersController::class,'search'])->name('search');
 Route::get('/logout',[UsersController::class,'logout'])->name('logout');
 Route::get('DropdownSearch/{id}',[UsersController::class,'DropdownSearch'])->name('DropdownSearch');
-Route::get('Watchmovie/{id}',[UsersController::class,'Watchmovie'])->name('Watchmovie');
 Route::get('addlist/{id}',[UsersController::class,'addlist'])->name('addlist');
 Route::get('RemoveMylistData/{id}',[UsersController::class,'RemoveMylistData'])->name('RemoveMylistData');
+Route::get('/movie/watch/{id}',[UsersController::class,'WatchMovie'])->name('User.watch');
+
 
 
 //Subadmin shuru

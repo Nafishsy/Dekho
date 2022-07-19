@@ -61,10 +61,10 @@ class UsersController extends Controller
         
     }
 
-    public function Watchmovie($id){
-        $movie= Movies::where('id','=',$id)->first();
-        $data=$movie->name;
-        return view('Users.watchmovie',compact('data'));
+    public function WatchMovie($id){
+        //Not functional, gonna work on it later
+        $movie=Movies::where('id','=',$id)->first();
+        return view('Subadmin.MovieWatch')->With('movie',$movie);
     }
 
     public function addlist($id){
