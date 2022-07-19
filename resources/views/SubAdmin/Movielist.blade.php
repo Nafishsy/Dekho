@@ -1,3 +1,5 @@
+@extends('layouts.afterLoginLayoutSubAdmin')
+@section('content')
 <table border='1' width='100%'>
     <th>Movie Name</th>
     <th>Movie Genre</th>
@@ -39,3 +41,4 @@
 
 
 </table>
+@endsection

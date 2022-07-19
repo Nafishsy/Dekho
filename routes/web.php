@@ -19,7 +19,7 @@ Route::get('Watchmovie/{id}',[UsersController::class,'Watchmovie'])->name('Watch
 
 
 //Subadmin shuru
-
+Route::get('/subadmin/Profile',[SubAdminController::class,'SubAdminProfile'])->name('SubAdmin.profile')->middleware('SubAdminLoginCheckMiddleware');
 Route::get('/sub',[SubAdminController::class,'ManageMovies'])->name('SubAdmin.movieManage')->middleware('SubAdminLoginCheckMiddleware');
 Route::get('/subadmin/addmovies',[SubAdminController::class,'AddMovies'])->name('SubAdmin.AddMovies')->middleware('SubAdminLoginCheckMiddleware');
 Route::post('/subadmin/addmovies',[SubAdminController::class,'UploadMovie'])->name('SubAdmin.AddMovies.Upload')->middleware('SubAdminLoginCheckMiddleware');

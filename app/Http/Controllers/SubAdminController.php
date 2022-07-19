@@ -16,6 +16,11 @@ class SubAdminController extends Controller
         return view('SubAdmin.movieManage');
     }
 
+    public function SubAdminProfile()
+    {
+        return view('SubAdmin.profile');
+    }
+
     public function AddMovies()
     {
         return view('SubAdmin.AddMovies');

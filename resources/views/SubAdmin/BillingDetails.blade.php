@@ -9,7 +9,8 @@ table, th, td {
     display : none;
 }
 </style>
-
+@extends('layouts.afterLoginLayoutSubAdmin')
+@section('content')
 <center>
 
 <h1>Billing report</h1>
@@ -47,3 +48,4 @@ Banned: {{number_format(($Bills['bans']/$Bills['total'])*100,2)}}%<br>
 {{$Accounts->links()}}
 
 
+@endsection
