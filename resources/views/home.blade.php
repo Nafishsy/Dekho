@@ -1,6 +1,6 @@
 @extends('layout.layout1')
 @section('content')
-<h1>{{session()->get('id')}}</h1>
+
 <div class="row">
   @foreach($Movies as $movie)
 
