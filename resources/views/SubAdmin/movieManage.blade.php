@@ -2,9 +2,10 @@
 @section('content')
 <style>
 .container {
-   max-width: 35% !important;
-   float:left;
+   width: 100% !important;
+   height: 2% !important;
 }
+
 </style>
 
 <meta charset="utf-8">
@@ -15,7 +16,7 @@
 
   
 
- <div class="container"> 
+ <div class="container" > 
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -36,7 +37,7 @@
         @if ($loop->first)
         <div class="item active">
         <a href="{{route('Movie.watch',['id'=>$movie->id])}}" target="_self">
-        <img src="{{asset('banners')}}/{{$movie->banner}}" alt="{{$movie->name}}" style="width:100%;" width="350" height="350">
+        <img src="{{asset('banners')}}/{{$movie->banner}}" alt="{{$movie->name}}"  width="100%" >
         <div class="carousel-caption">
           <h3>"{{$movie->name}}"</h3>
           <p>"{{$movie->description}}"</p>
@@ -47,7 +48,7 @@
         @else
         <div class="item">
         <a href="{{route('Movie.watch',['id'=>$movie->id])}}" target="_self">
-        <img src="{{asset('banners')}}/{{$movie->banner}}" alt="{{$movie->name}}" style="width:100%;" width="350" height="350">
+        <img src="{{asset('banners')}}/{{$movie->banner}}" alt="{{$movie->name}}" width="100%" >
         <div class="carousel-caption">
           <h3>"{{$movie->name}}"</h3>
           <p>"{{$movie->description}}"</p>

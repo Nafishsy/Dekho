@@ -27,11 +27,6 @@ class SubAdminController extends Controller
         return view('SubAdmin.AddMovies');
     }
 
-    public function Videos()
-    {
-        $data=Movies::all()->toArray();
-        return view('Customer.Videos')->With('data',$data);
-    }
 
     public function UploadMovie(Request $req)
     {

@@ -130,7 +130,7 @@ class accountsController extends Controller
         else
         {
             $end = Carbon::now();
-            if(session()->get('startTime')->diffInMinutes($end)>'5')
+            if(session()->get('startTime')->diffInMinutes($end)>='5')
             {
                 session()->flash('OTP', 'OTP not matched, send OTP again');
                 session()->forget('F_email');
