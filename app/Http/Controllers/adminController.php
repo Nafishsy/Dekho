@@ -15,6 +15,24 @@ class adminController extends Controller
         return view('admin.profile');
     }
 
+    function adminProfileUpload(Request $req){
+        $this->validate($req,
+            [
+                "profilepic"=>"required|mimes:img,jpeg,gif,png"
+            ],
+        );
+
+        $profilepic = session('username').".".$req->file('profilepic')->getClientOriginalExtension();
+        $req->file('profilepic')->storeAs('profilepics',$profilepic);
+
+        session()->put('profilepic', $profilepic);
+
+        $checkUser = accountsModel::where('username','=',session('username'))->first();
+        $checkUser->profilepic = $profilepic;
+        $checkUser->save();
+        return view('admin.profile');
+    }
+
     function adminChangePassword(){
         return view('admin.changePassword');
     }

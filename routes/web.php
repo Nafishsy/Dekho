@@ -66,6 +66,7 @@ Route::post('/public/PassChange',[accountsController::class,'PassChange'])->name
 Route::get('/Admin/Dashboard',[adminController::class,'adminDashboard'])->name('admin.dashboard')->middleware('adminLoginCheckMiddleware');
 
 Route::get('/Admin/Profile',[adminController::class,'adminProfile'])->name('admin.profile')->middleware('adminLoginCheckMiddleware');
+Route::post('/Admin/Profile',[adminController::class,'adminProfileUpload'])->name('admin.profile.upload')->middleware('adminLoginCheckMiddleware');
 
 Route::get('/Admin/ChangePassword',[adminController::class,'adminChangePassword'])->name('admin.changePassword')->middleware('adminLoginCheckMiddleware');
 Route::post('/Admin/ChangePassword',[adminController::class,'adminChangePasswordSubmit'])->name('admin.changePassword.submit')->middleware('adminLoginCheckMiddleware');

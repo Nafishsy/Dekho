@@ -37,5 +37,21 @@
             </td>
         </tr>
     </table>
+
+    <img src="{{asset('profilepics')}}/{{session('profilepic')}}">
+
+    <form method="post" action="" enctype="multipart/form-data">
+        
+    {{@csrf_field()}}
+        Banner File: 
+        <input type="file" name="profilepic">
+        @error('profilepic')
+            {{$message}}<br>
+        @enderror
+        <br>
+        <input type="submit" value="Upload">
+        
+    </form>
+
     <a href="{{route('admin.changePassword')}}">Change Password</a>
 @endsection

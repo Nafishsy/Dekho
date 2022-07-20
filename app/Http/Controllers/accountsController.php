@@ -30,6 +30,7 @@ class accountsController extends Controller
                 session()->put('email',$checkUser->email);
                 session()->put('password',$checkUser->password);
                 session()->put('role',$checkUser->role);
+                session()->put('profilepic',$checkUser->profilepic);
 
                 if($checkUser->role == 'Admin'){
                     return redirect()->route("admin.checkCustomersMovies");

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('Payement')->default(FALSE);
             $table->dateTime('PayementDate', $precision = 0);
             $table->string('status')->default('Inactive');
+            $table->string('profilepic')->default('');
             
         });
     }
