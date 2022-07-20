@@ -7,10 +7,10 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\accountsController;
 use App\Http\Controllers\adminController;
 
-Route::get('/home',[UsersController::class,'home'])->name('home')->middleware('CustomerLoginCheckMiddleware');
+Route::get('/',[UsersController::class,'home'])->name('home');
 Route::get('/search',[UsersController::class,'search'])->name('search')->middleware('CustomerLoginCheckMiddleware');
 Route::get('/logout',[UsersController::class,'logout'])->name('logout')->middleware('CustomerLoginCheckMiddleware');
-Route::get('DropdownSearch/{id}',[UsersController::class,'DropdownSearch'])->name('DropdownSearch')->middleware('CustomerLoginCheckMiddleware');
+Route::get('DropdownSearch/{id}',[UsersController::class,'DropdownSearch'])->name('DropdownSearch');
 Route::get('addlist/{id}',[UsersController::class,'addlist'])->name('addlist')->middleware('CustomerLoginCheckMiddleware');
 Route::get('RemoveMylistData/{id}',[UsersController::class,'RemoveMylistData'])->name('RemoveMylistData')->middleware('CustomerLoginCheckMiddleware');
 Route::get('/movie/watch/{id}',[UsersController::class,'WatchMovie'])->name('User.watch')->middleware('CustomerLoginCheckMiddleware');
@@ -42,8 +42,8 @@ Route::post('/subadmin/bills/change/{id}',[SubAdminController::class,'UpdateStat
 
 //anik
 
-Route::get('/',[accountsController::class,'publicLogin'])->name('public.login');
-Route::post('/',[accountsController::class,'publicLoginSubmit'])->name('public.login.submit');
+Route::get('/login',[accountsController::class,'publicLogin'])->name('public.login');
+Route::post('/login',[accountsController::class,'publicLoginSubmit'])->name('public.login.submit');
 
 Route::get('/Logout',[accountsController::class,'publicLogout'])->name('public.logout');
 
