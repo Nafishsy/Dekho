@@ -2,8 +2,7 @@
 @section('content')
 <style>
 .container {
-   width: 100% !important;
-   height: 2% !important;
+   width: 50% !important;
 }
 
 </style>
