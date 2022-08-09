@@ -39,7 +39,7 @@ class ApiController extends Controller
             $movies->description = $req->description;
             $movies->genre = $req->genre;
             $movies->movie = $movie;
-            $movies->banner = $req->banner;
+            $movies->banner = $banner;
             $movies->save();
             return $req;
     }
