@@ -15,8 +15,6 @@ Route::get('addlist/{id}',[UsersController::class,'addlist'])->name('addlist')->
 Route::get('RemoveMylistData/{id}',[UsersController::class,'RemoveMylistData'])->name('RemoveMylistData')->middleware('CustomerLoginCheckMiddleware');
 Route::get('/movie/watch/{id}',[UsersController::class,'WatchMovie'])->name('User.watch')->middleware('CustomerLoginCheckMiddleware');
 
-
-
 //Subadmin shuru
 Route::get('/subadmin/Profile',[SubAdminController::class,'SubAdminProfile'])->name('SubAdmin.profile')->middleware('SubAdminLoginCheckMiddleware');
 Route::get('/subadmin/Home',[SubAdminController::class,'ManageMovies'])->name('SubAdmin.movieManage')->middleware('SubAdminLoginCheckMiddleware');

@@ -14,9 +14,7 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 
 Route::get('/movie',[ApiController::class,'ManageMovies']);
-Route::post('/movie/upload',[ApiController::class,'upload']);
+Route::post('/movie/upload',[ApiController::class,'uploads']);
