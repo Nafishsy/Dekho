@@ -43,4 +43,11 @@ class ApiController extends Controller
             $movies->save();
             return $req;
     }
+
+    public function movieList()
+    {        
+        $data=Movies::all();
+        return response()->json($data);
+        
+    }
 }

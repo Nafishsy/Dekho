@@ -18,3 +18,4 @@ use App\Http\Controllers\ApiController;
 
 Route::get('/movie',[ApiController::class,'ManageMovies']);
 Route::post('/movie/upload',[ApiController::class,'uploads']);
+Route::get('/movie/list',[ApiController::class,'movieList']);
