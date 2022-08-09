@@ -18,4 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/movies',[ApiController::class,'ManageMovies']);
+Route::get('/movie',[ApiController::class,'ManageMovies']);
+Route::post('/movie/create',[ApiController::class,'upload']);
