@@ -16,7 +16,7 @@ class ApiController extends Controller
         return $data;
     }
 
-    public function UploadMovie(Request $req)
+    public function upload(Request $req)
     {
 
         $this->validate($req,
