@@ -19,3 +19,5 @@ use App\Http\Controllers\ApiController;
 Route::get('/movie',[ApiController::class,'ManageMovies']);
 Route::post('/movie/upload',[ApiController::class,'uploads']);
 Route::get('/movie/list',[ApiController::class,'movieList']);
+Route::get('/movie/details/{id}',[ApiController::class,'movieDetails']);
+Route::post('/movie/update/{id}',[ApiController::class,'UpdateMovie']);
