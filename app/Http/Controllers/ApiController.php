@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Movies;
+use App\Models\Accounts;
 
 
 class ApiController extends Controller
@@ -102,6 +103,28 @@ class ApiController extends Controller
 
             return $req;
             
+    }
+
+    public function DeleteMovie($id)
+    {
+        Movies::where('id','=',$id)->delete();            
+    }
+
+
+    public function BillingDetails(){
+
+        $actives = Accounts::where('status','=','Active')->count();
+        $bans = Accounts::where('status','=','Banned')->count();
+        $inactives = Accounts::where('status','=','Inactive')->count();
+        $bills['actives'] = $actives;        
+        $bills['bans'] = $bans;        
+        $bills['inactives'] = $inactives;        
+        $bills['total'] = $inactives+$actives+$bans;
+
+        
+        $Accounts = Accounts::all();
+
+        return response()->json(["bills"=>$bills,"accounts"=>$Accounts],200);
     }
 
 }
