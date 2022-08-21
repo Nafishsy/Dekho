@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Movies;
 use App\Models\Accounts;
-
+use Illuminate\Support\Facades\Validator;
 
 class ApiController extends Controller
 {
@@ -13,27 +13,36 @@ class ApiController extends Controller
 
     public function uploads(Request $req)
     {
-        $this->validate($req,
-            [
-                "name"=>"required|min:5",
-                "description"=>"required|min:10|max:2000",
-                "genre"=>"required|in:Action,Thriller,Comedy,Adventure,Documentary",
-            ],
+        $validator = Validator::make($req->all(),
+        [
+            "name"=>"required|min:5",
+            "description"=>"required|min:10|max:2000",
+            "genre"=>"required|in:Action,Thriller,Comedy,Adventure,Documentary",
+            "movie"=>"required|mimes:mp4,m4vm,mov,mkv",
+            "banner"=>"required|mimes:img,jpeg,gif,png"
+
+        ],
+    
+        [
+            "description.required"=>"Must write something about the movie",
+            "genre.required"=>"Must select the movie genre",
+            "movie.mimes"=>"Please select the valid file type which are mp4,m4vm,mov,mkv"
+            
+        ]);
+
+        if ($validator->fails())
+        {
+            return response()->json($validator->errors(),422);
+        }
         
-            [
-                "description.required"=>"Must write something about the movie",
-                "genre.required"=>"Must select the movie genre",
-                "movie.mimes"=>"Please select the valid file type which are mp4,m4vm,mov,mkv"
-                
-            ]);
 
-
-            $movie = $req->name.".".$req->file('movie')->getClientOriginalExtension();
+            
+            
+            $movie = $req->name.".mp4";
             $req->file('movie')->storeAs('movies',$movie);
 
-            $banner = $req->name.".".$req->file('banner')->getClientOriginalExtension();
+            $banner = $req->name.".jpg";
             $req->file('banner')->storeAs('banners',$banner);
-
 
             $movies = new Movies;
             $movies->name = $req->name;
@@ -42,8 +51,10 @@ class ApiController extends Controller
             $movies->movie = $movie;
             $movies->banner = $banner;
             $movies->save();
-            return $req;
+            return response()->json(["msg"=>"Movie uploaded"],200);
+            
     }
+    
 
     public function movieList()
     {        
