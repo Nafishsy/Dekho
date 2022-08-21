@@ -74,11 +74,13 @@ class ApiController extends Controller
     public function UpdateMovie(Request $req)
     {
 
-        $this->validate($req,
+        $validator = Validator::make($req->all(),
             [
                 "name"=>"required|min:5",
                 "description"=>"required|min:10|max:2000",
                 "genre"=>"required|in:Action,Thriller,Comedy,Adventure,Documentary",
+                "movie"=>"mimes:mp4,m4vm,mov,mkv",
+                "banner"=>"mimes:img,jpeg,gif,png"
 
             ],
         
@@ -89,30 +91,30 @@ class ApiController extends Controller
                 
             ]);
 
-            if($req->movie==NULL)
+            if ($validator->fails())
+        {
+            return response()->json($validator->errors(),422);
+        }
+
+            $movies = Movies::where('id','=',$req->id)->first();
+            $movies->name = $req->name;
+            $movies->description = $req->description;
+            $movies->genre = $req->genre;
+            if($req->movie!=NULL)
             {
-            $movies = Movies::where('id','=',$req->id)->first();
-            $movies->name = $req->name;
-            $movies->description = $req->description;
-            $movies->genre = $req->genre;
-            $movies->save();
+                $movie = $req->name.".mp4";
+                $req->file('movie')->storeAs('movies',$movie);
             }
-            else{
-
-            $movie = $req->name.".".$req->file('movie')->getClientOriginalExtension();
-            $req->file('movie')->storeAs('movies',$movie);
-
-
-
-            $movies = Movies::where('id','=',$req->id)->first();
-            $movies->name = $req->name;
-            $movies->description = $req->description;
-            $movies->genre = $req->genre;
-            $movies->movie = $movie;
-            $movies->save();
+            
+            if($req->banner!=NULL)
+            {
+                $banner = $req->name.".jpg";
+                $req->file('banner')->storeAs('banners',$banner);
             }
+            $movies->save();
+            
 
-            return $req;
+            return response()->json(["msg"=>"Movie updated"],200);
             
     }
 

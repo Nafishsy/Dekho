@@ -109,12 +109,8 @@ class SubAdminController extends Controller
             $movies->save();
             }
             else{
-
             $movie = $req->name.".".$req->file('movie')->getClientOriginalExtension();
             $req->file('movie')->storeAs('movies',$movie);
-
-
-
             $movies = Movies::where('id','=',$req->id)->first();
             $movies->name = $req->name;
             $movies->description = $req->description;

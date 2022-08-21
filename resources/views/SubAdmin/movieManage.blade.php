@@ -1,4 +1,4 @@
-@extends('layouts.afterLoginLayoutSubAdmin')
+  @extends('layouts.afterLoginLayoutSubAdmin')
 @section('content')
 <style>
 .container {
