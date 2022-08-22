@@ -65,4 +65,35 @@ class LoginApiController extends Controller
                 return response()->json(["msg"=>"Could not find any user"],404);
             }
     }
+
+    function registration (Request $req)
+    {
+        $validator = Validator::make($req->all(),
+            [
+                "username"=>"required|alpha|unique:accounts,Username",
+                "email"=>"required|unique:accounts,Email",
+                "password"=>"required|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[@!$#%]).*$/|min:8",
+                "confirmPassword"=>"required|same:password"
+            ],
+        
+            [
+                "password.regex"=>"Password must contain upper case, lower case, number and special characters",
+                "confirmPassword.same"=>"Confirm password and password must match"
+            ]);
+
+            if ($validator->fails())
+            {
+                return response()->json($validator->errors(),404);
+            }
+
+            $register = new accountsModel();
+            $register->username = $req->username;
+            $register->email = $req->email;
+            $register->password = $req->password;            
+            $register->save();
+
+            return response()->json(["msg"=>"Login Successful"],200);
+
+
+    }
 }

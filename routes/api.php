@@ -16,20 +16,22 @@ use App\Http\Controllers\APIAdminController;
 |
 */
 
-
-//Nafiz Subadmin
-Route::get('/movie',[ApiController::class,'ManageMovies']);//->middleware('AuthSubAdmin');
-Route::post('/movie/upload',[ApiController::class,'uploads']);//->middleware('AuthSubAdmin');
-Route::get('/movie/list',[ApiController::class,'movieList']);//->middleware('AuthSubAdmin');
-Route::get('/movie/details/{id}',[ApiController::class,'movieDetails']);//->middleware('AuthSubAdmin');
-Route::post('/movie/update/{id}',[ApiController::class,'UpdateMovie']);//->middleware('AuthSubAdmin');
-Route::get('/movie/delete/{id}',[ApiController::class,'DeleteMovie']);//->middleware('AuthSubAdmin');
-Route::get('/subadmin/bills',[ApiController::class,'BillingDetails']);//->middleware('AuthSubAdmin');
-
-
 //Nafiz Login
 
 Route::post('/login',[LoginApiController::class,'login']);
+Route::post('/registration',[LoginApiController::class,'registration']);
+
+//Nafiz Subadmin
+Route::get('/movie',[ApiController::class,'ManageMovies'])->middleware('AuthSubAdmin');
+Route::post('/movie/upload',[ApiController::class,'uploads'])->middleware('AuthSubAdmin');
+Route::get('/movie/list',[ApiController::class,'movieList'])->middleware('AuthSubAdmin');
+Route::get('/movie/details/{id}',[ApiController::class,'movieDetails'])->middleware('AuthSubAdmin');
+Route::post('/movie/update/{id}',[ApiController::class,'UpdateMovie'])->middleware('AuthSubAdmin');
+Route::get('/movie/delete/{id}',[ApiController::class,'DeleteMovie'])->middleware('AuthSubAdmin');
+Route::get('/subadmin/bills',[ApiController::class,'BillingDetails'])->middleware('AuthSubAdmin');
+
+
+
 
 
 
@@ -43,6 +45,7 @@ Route::get('/Admin/CustomersMoviesList/{id}/details',[APIAdminController::class,
 Route::get('/Admin/UsersList',[APIAdminController::class,'adminUsersList']);
 Route::get('/Admin/UsersList/{id}/details',[APIAdminController::class,'adminChangeRole']);
 Route::get('/Admin/UserInfo/{id}/details',[APIAdminController::class,'adminUserInfo']);
-Route::post('/Admin/UsersList',[APIAdminController::class,'adminSearchUsersSubmit']);
+Route::post('Admin/UsersList/search',[APIAdminController::class,'adminSearchUsersSubmit']);
+Route::post('Admin/CustomerMovie/search',[APIAdminController::class,'adminCustomerMovieSubmit']);
 
 //

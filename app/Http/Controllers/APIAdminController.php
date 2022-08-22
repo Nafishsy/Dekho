@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\accountsModel;
 use App\Models\moviesModel;
 use App\Models\customersMoviesModel;
+use Illuminate\Support\Str;
 
 class APIAdminController extends Controller
 {
@@ -76,13 +77,35 @@ class APIAdminController extends Controller
     }
 
     function adminSearchUsersSubmit(Request $req){
-            $users = accountsModel::where('role','=','Customer')->where('username','LIKE',$req->search.'%')->get();
+        $users = accountsModel::where('role','!=','Admin')->where('username','LIKE',$req->search.'%')->get();
+        
+        return response()->json($users,200);
+    }
+
+    function adminCustomerMovieSubmit(Request $req){
+
+        $customersMovies = customersMoviesModel::all();
+        $or= array();
+       
+        foreach($customersMovies as $cm)
+        {
+            if(Str::startsWith($cm->accountsModel->username, $req->search) || Str::startsWith($cm->moviesModel->name, $req->search) || $req->search=='')
+            {
+                $or[] = array(
+                    'ID' => $cm->id,
+                    'CustomerName' => $cm->accountsModel->username,
+                    'CustomerEmail' => $cm->accountsModel->email,
+                    'MovieName'    => $cm->moviesModel->name,
+                    'MovieDescription' => $cm->moviesModel->description,
+                    'MovieRating' => $cm->moviesModel->rating,
+                    'MovieUploadTime' => $cm->moviesModel->uploadTime,
+                    'MovieGenre' => $cm->moviesModel->genre,
+                );
+            }
             
-            return response()->json(
-                [
-                    "msg"=>"Successful",
-                    "data"=>$users        
-                ]
-            );
+        }
+
+        return response()->json($or,200);
+
     }
 }

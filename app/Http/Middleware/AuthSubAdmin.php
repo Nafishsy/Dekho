@@ -31,7 +31,7 @@ class AuthSubAdmin
                 // return response()->json(["msg"=>"logged in"]);
                 return $next($request);             
             }
-            return response()->json(["msg"=>"Expired token"],401);
+            return response()->json(["msg"=>"Expired token",'token'=>$token],401);
         }
         return response()->json(["msg"=>"Invalid"],401);
     }
