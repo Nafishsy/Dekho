@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\LoginApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,10 +15,17 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::get('/movie',[ApiController::class,'ManageMovies']);
-Route::post('/movie/upload',[ApiController::class,'uploads']);
-Route::get('/movie/list',[ApiController::class,'movieList']);
-Route::get('/movie/details/{id}',[ApiController::class,'movieDetails']);
-Route::post('/movie/update/{id}',[ApiController::class,'UpdateMovie']);
-Route::get('/movie/delete/{id}',[ApiController::class,'DeleteMovie']);
-Route::get('/subadmin/bills',[ApiController::class,'BillingDetails']);
+
+//Nafiz Subadmin
+Route::get('/movie',[ApiController::class,'ManageMovies']);//->middleware('AuthSubAdmin');
+Route::post('/movie/upload',[ApiController::class,'uploads']);//->middleware('AuthSubAdmin');
+Route::get('/movie/list',[ApiController::class,'movieList']);//->middleware('AuthSubAdmin');
+Route::get('/movie/details/{id}',[ApiController::class,'movieDetails']);//->middleware('AuthSubAdmin');
+Route::post('/movie/update/{id}',[ApiController::class,'UpdateMovie']);//->middleware('AuthSubAdmin');
+Route::get('/movie/delete/{id}',[ApiController::class,'DeleteMovie']);//->middleware('AuthSubAdmin');
+Route::get('/subadmin/bills',[ApiController::class,'BillingDetails']);//->middleware('AuthSubAdmin');
+
+
+//Nafiz Login
+
+Route::post('/login',[LoginApiController::class,'login']);

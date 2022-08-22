@@ -51,6 +51,7 @@ class ApiController extends Controller
             $movies->movie = $movie;
             $movies->banner = $banner;
             $movies->save();
+            
             return response()->json(["msg"=>"Movie uploaded"],200);
             
     }
