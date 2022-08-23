@@ -146,4 +146,18 @@ class LoginApiController extends Controller
         $user=accountsModel::where('username',$req->username)->first();
         return response()->json($user,200);
     }
+
+    function Logout (Request $req)
+    {
+        $data = accountsModel::where('username',$req->username)->first();
+        $id =$data->id;
+        $user=Tokens::where('u_id',$id)->first();
+        if($user!=null)
+        {
+            $user->delete();
+            return response()->json(["msg"=>"Logout Successful"],200);
+        }
+
+    }
+
 }

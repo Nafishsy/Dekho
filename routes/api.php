@@ -19,6 +19,7 @@ use App\Http\Controllers\APIAdminController;
 //Nafiz Login
 
 Route::post('/login',[LoginApiController::class,'login']);
+Route::post('/logout',[LoginApiController::class,'Logout']);
 Route::post('/registration',[LoginApiController::class,'registration']);
 Route::post('/forgetpass',[LoginApiController::class,'forgetpass']);
 Route::post('/otp',[LoginApiController::class,'OTP']);
