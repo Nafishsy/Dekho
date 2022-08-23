@@ -53,5 +53,6 @@ Route::get('/Admin/UserInfo/{id}/details',[APIAdminController::class,'adminUserI
 Route::post('Admin/UsersList/search',[APIAdminController::class,'adminSearchUsersSubmit']);
 Route::post('Admin/CustomerMovie/search',[APIAdminController::class,'adminCustomerMovieSubmit']);
 Route::post('profilepic/upload',[APIAdminController::class,'ProfilePicUp']);
+Route::post('profilepic/changepass',[APIAdminController::class,'ChangePassword']);
 
 //
