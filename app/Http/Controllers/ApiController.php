@@ -141,8 +141,9 @@ class ApiController extends Controller
     }
     public function sendText(Request $req){
 
-        
+
         return response()->json(["bills"=>$bills,"accounts"=>$Accounts],200);
     }
 
 }
+ 
