@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('role')->default('Customer');  
             $table->boolean('Payement')->default(FALSE);
-            $table->dateTime('PayementDate', $precision = 0)->default(NULL);
+            $table->dateTime('PayementDate', $precision = 0)->nullable();
             $table->string('status')->default('Inactive');
             $table->string('profilepic')->default('');
             

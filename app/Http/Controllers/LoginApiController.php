@@ -91,7 +91,8 @@ class LoginApiController extends Controller
             $register = new accountsModel();
             $register->username = $req->username;
             $register->email = $req->email;
-            $register->password = $req->password;            
+            $register->password = $req->password; 
+            // $register->PaymentDate = "NULL";           
             $register->save();
 
             return response()->json(["msg"=>"Login Successful"],200);
