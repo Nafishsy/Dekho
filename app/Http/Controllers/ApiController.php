@@ -133,11 +133,15 @@ class ApiController extends Controller
         $bills['actives'] = $actives;        
         $bills['bans'] = $bans;        
         $bills['inactives'] = $inactives;        
-        $bills['total'] = $inactives+$actives+$bans;
 
         
         $Accounts = Accounts::all();
 
+        return response()->json(["bills"=>$bills,"accounts"=>$Accounts],200);
+    }
+    public function sendText(Request $req){
+
+        
         return response()->json(["bills"=>$bills,"accounts"=>$Accounts],200);
     }
 
