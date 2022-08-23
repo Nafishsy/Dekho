@@ -18,13 +18,11 @@ use App\Http\Controllers\APIAdminController;
 
 //Nafiz Login
 
-Route::post('/login',[LoginApiController::class,'login']);
-Route::post('/logout',[LoginApiController::class,'Logout']);
-Route::post('/registration',[LoginApiController::class,'registration']);
+
 Route::post('/forgetpass',[LoginApiController::class,'forgetpass']);
 Route::post('/otp',[LoginApiController::class,'OTP']);
 
-Route::post('/userinfo',[LoginApiController::class,'UserInfo']);
+
 
 //Nafiz Subadmin
 Route::get('/movie',[ApiController::class,'ManageMovies'])->middleware('AuthSubAdmin');
@@ -41,19 +39,51 @@ Route::get('subadmin/sendtext',[ApiController::class,'sendText'])->middleware('A
 
 
 
-//Anik Admin
+//-------------------------ANIK START-------------------------
 
+// Login
+Route::post('/login',[LoginApiController::class,'login']);
+
+// Logout
+Route::post('/logout',[LoginApiController::class,'Logout']);
+
+// Registration
+Route::post('/registration',[LoginApiController::class,'registration']);
+
+// Homepage
 Route::get('/Admin/Home',[APIAdminController::class,'adminHome']);
 
+// See which customer viewd which movie
 Route::get('/Admin/CustomersMoviesList',[APIAdminController::class,'adminCheckCustomersMovies']);
+
+// See details of which customer viewd which movie
 Route::get('/Admin/CustomersMoviesList/{id}/details',[APIAdminController::class,'adminUserMovieInfo']);
 
-Route::get('/Admin/UsersList',[APIAdminController::class,'adminUsersList']);
-Route::get('/Admin/UsersList/{id}/details',[APIAdminController::class,'adminChangeRole']);
-Route::get('/Admin/UserInfo/{id}/details',[APIAdminController::class,'adminUserInfo']);
-Route::post('Admin/UsersList/search',[APIAdminController::class,'adminSearchUsersSubmit']);
+// Search by movie/user name
 Route::post('Admin/CustomerMovie/search',[APIAdminController::class,'adminCustomerMovieSubmit']);
+
+// See all users list
+Route::get('/Admin/UsersList',[APIAdminController::class,'adminUsersList']);
+
+// Get Customer, subAdmin count
+Route::get('/Admin/UsersListCount',[APIAdminController::class,'adminUsersListCount']);
+
+// Change roles of users
+Route::get('/Admin/UsersList/{id}/details',[APIAdminController::class,'adminChangeRole']);
+
+// See details of individual users
+Route::get('/Admin/UserInfo/{id}/details',[APIAdminController::class,'adminUserInfo']);
+
+// Search users
+Route::post('Admin/UsersList/search',[APIAdminController::class,'adminSearchUsersSubmit']);
+
+// Profile picture upload
 Route::post('profilepic/upload',[APIAdminController::class,'ProfilePicUp']);
+
+// Change password
 Route::post('profilepic/changepass',[APIAdminController::class,'ChangePassword']);
 
-//
+// Self profile info view
+Route::post('/userinfo',[LoginApiController::class,'UserInfo']);
+
+//-------------------------ANIK END-------------------------
