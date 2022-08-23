@@ -7,6 +7,8 @@ use App\Models\accountsModel;
 use App\Models\moviesModel;
 use App\Models\customersMoviesModel;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class APIAdminController extends Controller
 {
@@ -106,6 +108,32 @@ class APIAdminController extends Controller
         }
 
         return response()->json($or,200);
+
+    }
+
+    function ProfilePicUp(Request $req)
+    {
+
+        $validator = Validator::make($req->all(),
+        [
+            "profilepic"=>"mimes:img,jpeg,gif,png"
+
+        ]);
+
+        if ($validator->fails())
+            {
+                return response()->json($validator->errors(),404);
+            }
+
+
+    $profilepic = $req->username.Str::random(5).".jpg";
+    $req->file('profilepic')->storeAs('profilepics',$profilepic);
+    
+    $checkUser = accountsModel::where('username','=',$req->username)->first();
+    $checkUser->profilepic = $profilepic;
+    $checkUser->save();    
+    
+        return response()->json(['msg'=>'Profile Uploaded'],200);
 
     }
 }

@@ -15,6 +15,8 @@ use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Mail\ForgetPassword;
+
 
 class LoginApiController extends Controller
 {
@@ -95,5 +97,53 @@ class LoginApiController extends Controller
             return response()->json(["msg"=>"Login Successful"],200);
 
 
+    }
+
+    function forgetpass (Request $req)
+    {
+
+        $validator = Validator::make($req->all(),
+            [
+                "email"=>"required|exists:accounts,Email",
+            ],
+        
+            [
+                "email.required"=>"Type an email",
+                "email.exists"=>"No such email found in databse",
+            ]);
+
+
+            if ($validator->fails())
+            {
+                return response()->json($validator->errors(),404);
+            }
+
+            for ($i=0; $i < 6 ; $i++) { 
+                $otp[$i] = rand(0,9);
+            }
+            $otp=implode("",$otp);
+
+            session()->put('OTP', $otp);
+            
+            $start = Carbon::now();
+            session()->put('startTime',$start);
+            session()->put('F_email',$req->email);          
+    
+            
+            Mail::to($req->email)->send(new ForgetPassword($otp)); 
+            return response()->json(["msg"=>"MAIL Successful","email"=>$req->email,'otp'=>session()->get('OTP')],200);
+
+    }
+/*
+    function OTP (Request $req)
+    {
+        $otp = session()->get('OTP');
+        return response()->json(["otp",$otp],200);
+    }
+*/
+    function UserInfo (Request $req)
+    {
+        $user=accountsModel::where('username',$req->username)->first();
+        return response()->json($user,200);
     }
 }

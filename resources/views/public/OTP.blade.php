@@ -1,4 +1,3 @@
- 
 
 <h1>YOUR OTP IS</h1>
 

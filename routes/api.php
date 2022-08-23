@@ -20,6 +20,10 @@ use App\Http\Controllers\APIAdminController;
 
 Route::post('/login',[LoginApiController::class,'login']);
 Route::post('/registration',[LoginApiController::class,'registration']);
+Route::post('/forgetpass',[LoginApiController::class,'forgetpass']);
+Route::post('/otp',[LoginApiController::class,'OTP']);
+
+Route::post('/userinfo',[LoginApiController::class,'UserInfo']);
 
 //Nafiz Subadmin
 Route::get('/movie',[ApiController::class,'ManageMovies'])->middleware('AuthSubAdmin');
@@ -47,5 +51,6 @@ Route::get('/Admin/UsersList/{id}/details',[APIAdminController::class,'adminChan
 Route::get('/Admin/UserInfo/{id}/details',[APIAdminController::class,'adminUserInfo']);
 Route::post('Admin/UsersList/search',[APIAdminController::class,'adminSearchUsersSubmit']);
 Route::post('Admin/CustomerMovie/search',[APIAdminController::class,'adminCustomerMovieSubmit']);
+Route::post('profilepic/upload',[APIAdminController::class,'ProfilePicUp']);
 
 //
