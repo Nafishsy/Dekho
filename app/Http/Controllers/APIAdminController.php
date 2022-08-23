@@ -46,11 +46,11 @@ class APIAdminController extends Controller
         $customers = accountsModel::where('role','!=','Admin')->where('role','Customer')->count();
         $subadmins = accountsModel::where('role','!=','Admin')->where('role','SubAdmin')->count();
 
-        $users[] = array(
-            'customers' => $customers,
-            'subadmins' => $subadmins
-        );
-        return response()->json($users,200);
+        // $users[] = array(
+        //     'customers' => $customers,
+        //     'subadmins' => $subadmins
+        // );
+        return response()->json([$customers,$subadmins],200);
     }
 
     function adminChangeRole($id)
