@@ -52,39 +52,39 @@ Route::post('/logout',[LoginApiController::class,'Logout']);
 Route::post('/registration',[LoginApiController::class,'registration']);
 
 // Homepage
-Route::get('/Admin/Home',[APIAdminController::class,'adminHome']);
+Route::get('/Admin/Home',[APIAdminController::class,'adminHome'])->middleware('AuthAdmin');
 
 // See which customer viewd which movie
-Route::get('/Admin/CustomersMoviesList',[APIAdminController::class,'adminCheckCustomersMovies']);
+Route::get('/Admin/CustomersMoviesList',[APIAdminController::class,'adminCheckCustomersMovies'])->middleware('AuthAdmin');
 
 // See details of which customer viewd which movie
-Route::get('/Admin/CustomersMoviesList/{id}/details',[APIAdminController::class,'adminUserMovieInfo']);
+Route::get('/Admin/CustomersMoviesList/{id}/details',[APIAdminController::class,'adminUserMovieInfo'])->middleware('AuthAdmin');
 
 // Search by movie/user name
-Route::post('Admin/CustomerMovie/search',[APIAdminController::class,'adminCustomerMovieSubmit']);
+Route::post('Admin/CustomerMovie/search',[APIAdminController::class,'adminCustomerMovieSubmit'])->middleware('AuthAdmin');
 
 // See all users list
-Route::get('/Admin/UsersList',[APIAdminController::class,'adminUsersList']);
+Route::get('/Admin/UsersList',[APIAdminController::class,'adminUsersList'])->middleware('AuthAdmin');
 
 // Get Customer, subAdmin count
-Route::get('/Admin/UsersListCount',[APIAdminController::class,'adminUsersListCount']);
+Route::get('/Admin/UsersListCount',[APIAdminController::class,'adminUsersListCount'])->middleware('AuthAdmin');
 
 // Change roles of users
-Route::get('/Admin/UsersList/{id}/details',[APIAdminController::class,'adminChangeRole']);
+Route::get('/Admin/UsersList/{id}/details',[APIAdminController::class,'adminChangeRole'])->middleware('AuthAdmin');
 
 // See details of individual users
-Route::get('/Admin/UserInfo/{id}/details',[APIAdminController::class,'adminUserInfo']);
+Route::get('/Admin/UserInfo/{id}/details',[APIAdminController::class,'adminUserInfo'])->middleware('AuthAdmin');
 
 // Search users
-Route::post('Admin/UsersList/search',[APIAdminController::class,'adminSearchUsersSubmit']);
+Route::post('Admin/UsersList/search',[APIAdminController::class,'adminSearchUsersSubmit'])->middleware('AuthAdmin');
 
 // Profile picture upload
-Route::post('profilepic/upload',[APIAdminController::class,'ProfilePicUp']);
+Route::post('profilepic/upload',[APIAdminController::class,'ProfilePicUp'])->middleware('AuthAdmin');
 
 // Change password
-Route::post('profilepic/changepass',[APIAdminController::class,'ChangePassword']);
+Route::post('profilepic/changepass',[APIAdminController::class,'ChangePassword'])->middleware('AuthAdmin');
 
 // Self profile info view
-Route::post('/userinfo',[LoginApiController::class,'UserInfo']);
+Route::post('/userinfo',[LoginApiController::class,'UserInfo'])->middleware('AuthAdmin');
 
 //-------------------------ANIK END-------------------------
