@@ -141,6 +141,12 @@ class ApiController extends Controller
         return response()->json(["bills"=>$bills,"accounts"=>$Accounts],200);
     }
 
+    public function ChangeStatus(){
+
+       $customer = Accounts::where('id','=',$id)->first();
+        return response()->json(["bills"=>$bills,"accounts"=>$Accounts],200);
+    }
+
 
     public function Chatting(){
 
