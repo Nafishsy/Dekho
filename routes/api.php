@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\LoginApiController;
 use App\Http\Controllers\APIAdminController;
+use App\Http\Controllers\UserApiController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -94,3 +95,12 @@ Route::post('profilepic/changepass',[APIAdminController::class,'ChangePassword']
 Route::post('/userinfo',[LoginApiController::class,'UserInfo'])->middleware('AuthAdmin');
 
 //-------------------------ANIK END-------------------------
+
+//Nion
+Route::get('home/movie/list',[UserApiController::class,'movieList']);
+
+Route::post('home/movie/list/search',[UserApiController::class,'search']);
+
+Route::post('banner/uplode',[UserApiController::class,'banneruplode']);
+
+Route::get('watch/movie/{id}',[UserApiController::class,'WatchMovie']);
