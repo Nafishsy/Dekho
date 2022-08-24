@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Movies;
 use App\Models\Accounts;
+use App\Models\Chat;
 use Illuminate\Support\Facades\Validator;
 
 class ApiController extends Controller
@@ -139,10 +140,27 @@ class ApiController extends Controller
 
         return response()->json(["bills"=>$bills,"accounts"=>$Accounts],200);
     }
+
+
+    public function Chatting(){
+
+        $chat = Chat::where('r_id','=',1)->get();   
+
+        return response()->json($chat,200);
+    }
+
     public function sendText(Request $req){
 
+        $msg = new Chat;
+        $msg->s_id = $req->id;
+        $msg->a_id = 3;
+        $msg->r_id = 1;
+        $msg->text = $req->text;
 
-        return response()->json(["bills"=>$bills,"accounts"=>$Accounts],200);
+        $msg->save();
+            
+
+        return response()->json($msg,200);
     }
 
 }

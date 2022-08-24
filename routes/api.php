@@ -32,7 +32,8 @@ Route::get('/movie/details/{id}',[ApiController::class,'movieDetails'])->middlew
 Route::post('/movie/update/{id}',[ApiController::class,'UpdateMovie'])->middleware('AuthSubAdmin');
 Route::get('/movie/delete/{id}',[ApiController::class,'DeleteMovie'])->middleware('AuthSubAdmin');
 Route::get('/subadmin/bills',[ApiController::class,'BillingDetails'])->middleware('AuthSubAdmin');
-Route::get('subadmin/sendtext',[ApiController::class,'sendText'])->middleware('AuthSubAdmin');
+Route::post('subadmin/sendtext',[ApiController::class,'sendText'])->middleware('AuthSubAdmin');
+Route::get('subadmin/chat',[ApiController::class,'Chatting'])->middleware('AuthSubAdmin');
 
 
 
