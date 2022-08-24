@@ -69,7 +69,7 @@ Route::get('/Admin/CustomersMoviesList/{id}/details',[APIAdminController::class,
 Route::post('Admin/CustomerMovie/search',[APIAdminController::class,'adminCustomerMovieSubmit'])->middleware('AuthAdmin');
 
 // See all users list
-Route::get('/Admin/UsersList',[APIAdminController::class,'adminUsersList'])->middleware('AuthAdmin');
+Route::get('/Admin/UsersList',[APIAdminController::class,'adminUsersList'])->middleware('AuthAdmin');;
 
 // Get Customer, subAdmin count
 Route::get('/Admin/UsersListCount',[APIAdminController::class,'adminUsersListCount'])->middleware('AuthAdmin');
