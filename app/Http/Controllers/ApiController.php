@@ -150,25 +150,43 @@ class ApiController extends Controller
         return response()->json(["bills"=>$bills,"accounts"=>$Accounts],200);
     }
 
-    public function ChangeStatus(){
+    public function ChangeStatus(Request $req){
 
-       $customer = Accounts::where('id','=',$id)->first();
-        return response()->json(["bills"=>$bills,"accounts"=>$Accounts],200);
+       $user = Accounts::where('id','=',$req->id)->first();
+       $user->status=$req->status;
+       $user->save();
+       return response()->json(["msg"=>$req->status],200);
     }
-
+ 
 
     public function Chatting(){
 
-        $chat = Chat::where('r_id','=',1)->get();   
+        $chat = Chat::where('r_id','=',1)->orderBy('created_at', 'asc')->get();   
 
         return response()->json($chat,200);
     }
 
     public function sendText(Request $req){
 
+        //jaitese text
         $msg = new Chat;
         $msg->s_id = $req->id;
-        $msg->a_id = 3;
+        $msg->a_id = 0;
+        $msg->r_id = 1;
+        $msg->text = $req->text;
+
+        $msg->save();
+            
+
+        return response()->json($msg,200);
+    }
+
+    public function sendTextByCustomer(Request $req){
+
+        //jaitese text by customer
+        $msg = new Chat;
+        $msg->s_id = 0;
+        $msg->a_id = $req->id;
         $msg->r_id = 1;
         $msg->text = $req->text;
 
