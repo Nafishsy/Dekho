@@ -21,6 +21,7 @@ use App\Http\Controllers\APIAdminController;
 
 Route::post('/forgetpass',[LoginApiController::class,'forgetpass']);
 Route::post('/otp',[LoginApiController::class,'OTP']);
+Route::post('forget/changepass',[LoginApiController::class,'passChange']);
 
 
 
