@@ -38,11 +38,11 @@ Route::post('subadmin/bills/changestatus',[ApiController::class,'ChangeStatus'])
 Route::post('subadmin/sendtext',[ApiController::class,'sendText'])->middleware('AuthSubAdmin');
 
 Route::get('subadmin/chat',[ApiController::class,'Chatting'])->middleware('AuthSubAdmin');
-Route::post('subadmin/profilepic/upload',[APIAdminController::class,'ProfilePicUp'])->middleware('AuthSubAdmin');
-Route::post('subadmin/profilepic/changepass',[APIAdminController::class,'ChangePassword'])->middleware('AuthSubAdmin');
+Route::post('subadmin/profilepic/upload',[ApiController::class,'ProfilePicUp'])->middleware('AuthSubAdmin');
+Route::post('subadmin/profilepic/changepass',[ApiController::class,'ChangePassword'])->middleware('AuthSubAdmin');
 Route::post('subadmin/userinfo',[LoginApiController::class,'UserInfo'])->middleware('AuthSubAdmin');
 
-Route::post('customer/sendtext',[ApiController::class,'sendTextByCustomer']); //Ekhane Customer middleware kora lagbe
+Route::post('customer/sendtext',[ApiController::class,'sendTextByCustomer'])->middleware('AuthSubAdmin'); //Ekhane Customer middleware kora lagbe
 
 
 

@@ -7,6 +7,8 @@ use App\Models\Movies;
 use App\Models\Accounts;
 use App\Models\Chat;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class ApiController extends Controller
 {
@@ -191,10 +193,63 @@ class ApiController extends Controller
         $msg->text = $req->text;
 
         $msg->save();
-            
-
         return response()->json($msg,200);
     }
+
+    function ProfilePicUp(Request $req)
+    {
+
+        $validator = Validator::make($req->all(),
+        [
+            "profilepic"=>"mimes:img,jpeg,gif,png"
+
+        ]);
+
+        if ($validator->fails())
+            {
+                return response()->json($validator->errors(),404);
+            }
+
+
+    $profilepic = $req->username.Str::random(5).".jpg";
+    $req->file('profilepic')->storeAs('profilepics',$profilepic);
+    
+    $checkUser = Accounts::where('username','=',$req->username)->first();
+    $checkUser->profilepic = $profilepic;
+    $checkUser->save();    
+    
+        return response()->json(['msg'=>'Profile Uploaded'],200);
+
+    }
+
+    function ChangePassword(Request $req )
+    {
+        $validator = Validator::make($req->all(),
+            [
+                "curr_pass"=>"required",
+                "new_pass"=>"required|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[@!$#%]).*$/|min:8",
+                "conf_pass"=>"required|same:new_pass"
+            ]);
+
+            if ($validator->fails())
+            {
+                return response()->json($validator->errors(),404);
+            }
+
+            $checkUser = Accounts::where('username','=',$req->username)->first();
+            if($req->curr_pass == $checkUser->password){
+                $checkUser->password= $req->new_pass;
+                $checkUser->save();
+                return response()->json(["msg"=>"Password Changed"],200);
+            }
+            else
+            {
+                return response()->json(["msg"=>"Old Password is wrong"],200);
+            }
+
+
+    }
+
 
 }
  
