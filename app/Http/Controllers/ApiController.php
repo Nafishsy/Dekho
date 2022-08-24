@@ -65,6 +65,15 @@ class ApiController extends Controller
 
     }
 
+    public function MovieSearch(Request $req)
+    {             
+
+            $data=Movies::where('name','LIKE',$req->search.'%')->get();
+            return response()->json($data);
+        
+
+    }
+
     public function movieDetails($id)
     {        
         $data = Movies::where('id',$id)->first();

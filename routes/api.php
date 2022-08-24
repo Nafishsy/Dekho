@@ -29,6 +29,7 @@ Route::post('forget/changepass',[LoginApiController::class,'passChange']);
 Route::get('/movie',[ApiController::class,'ManageMovies'])->middleware('AuthSubAdmin');
 Route::post('/movie/upload',[ApiController::class,'uploads'])->middleware('AuthSubAdmin');
 Route::get('/movie/list',[ApiController::class,'movieList'])->middleware('AuthSubAdmin');
+Route::post('SubAdmin/movie/list/search',[ApiController::class,'MovieSearch']);
 Route::get('/movie/details/{id}',[ApiController::class,'movieDetails'])->middleware('AuthSubAdmin');
 Route::post('/movie/update/{id}',[ApiController::class,'UpdateMovie'])->middleware('AuthSubAdmin');
 Route::get('/movie/delete/{id}',[ApiController::class,'DeleteMovie'])->middleware('AuthSubAdmin');

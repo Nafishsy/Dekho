@@ -90,6 +90,7 @@ class APIAdminController extends Controller
     }
 
     function adminSearchUsersSubmit(Request $req){
+
         $users = accountsModel::where('role','!=','Admin')->where('username','LIKE',$req->search.'%')->get();
         
         return response()->json($users,200);
