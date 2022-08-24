@@ -8,8 +8,7 @@ use App\Models\Tokens;
 use App\Models\Accounts;
 use Illuminate\Support\Str;
 
-
-class AuthSubAdmin
+class AuthAdmin
 {
     /**
      * Handle an incoming request.
@@ -24,11 +23,10 @@ class AuthSubAdmin
         
         if ($key)
         {
-            $token=Tokens::where('token',$key)->where('role','SubAdmin')
+            $token=Tokens::where('token',$key)->where('role','Admin')
                         ->whereNUll('expired_at')->first();
             if($token)
             {
-                // return response()->json(["msg"=>"logged in"]);
                 return $next($request);             
             }
             return response()->json(["msg"=>"Expired token",'token'=>$token],401);
