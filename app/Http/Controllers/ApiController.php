@@ -211,12 +211,12 @@ class ApiController extends Controller
             }
 
 
-    $profilepic = $req->username.Str::random(5).".jpg";
-    $req->file('profilepic')->storeAs('profilepics',$profilepic);
-    
-    $checkUser = Accounts::where('username','=',$req->username)->first();
-    $checkUser->profilepic = $profilepic;
-    $checkUser->save();    
+            $profilepic = $req->username.Str::random(5).".jpg";
+            $req->file('profilepic')->storeAs('profilepics',$profilepic);
+            
+            $checkUser = Accounts::where('username','=',$req->username)->first();
+            $checkUser->profilepic = $profilepic;
+            $checkUser->save();    
     
         return response()->json(['msg'=>'Profile Uploaded'],200);
 

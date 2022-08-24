@@ -88,6 +88,7 @@ Route::post('Admin/UsersList/search',[APIAdminController::class,'adminSearchUser
 // Profile picture upload
 Route::post('profilepic/upload',[APIAdminController::class,'ProfilePicUp'])->middleware('AuthAdmin');
 
+
 // Change password
 Route::post('profilepic/changepass',[APIAdminController::class,'ChangePassword'])->middleware('AuthAdmin');
 
@@ -104,3 +105,7 @@ Route::post('home/movie/list/search',[UserApiController::class,'search']);
 Route::post('banner/uplode',[UserApiController::class,'banneruplode']);
 
 Route::get('watch/movie/{id}',[UserApiController::class,'WatchMovie']);
+
+Route::post('customer/userinfo',[UserApiController::class,'UserProfile']);
+
+Route::post('customer/profilepic/upload',[UserApiController::class,'ProfilePicUp']);
