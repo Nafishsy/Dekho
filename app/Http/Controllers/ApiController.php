@@ -181,5 +181,20 @@ class ApiController extends Controller
         return response()->json($msg,200);
     }
 
+    public function sendTextByCustomer(Request $req){
+
+        //jaitese text by customer
+        $msg = new Chat;
+        $msg->s_id = 0;
+        $msg->a_id = $req->id;
+        $msg->r_id = 1;
+        $msg->text = $req->text;
+
+        $msg->save();
+            
+
+        return response()->json($msg,200);
+    }
+
 }
  

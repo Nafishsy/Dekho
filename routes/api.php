@@ -36,12 +36,13 @@ Route::get('/movie/delete/{id}',[ApiController::class,'DeleteMovie'])->middlewar
 Route::get('/subadmin/bills',[ApiController::class,'BillingDetails'])->middleware('AuthSubAdmin');
 Route::post('subadmin/bills/changestatus',[ApiController::class,'ChangeStatus'])->middleware('AuthSubAdmin');
 Route::post('subadmin/sendtext',[ApiController::class,'sendText'])->middleware('AuthSubAdmin');
-Route::get('subadmin/chat',[ApiController::class,'Chatting']);
+
+Route::get('subadmin/chat',[ApiController::class,'Chatting'])->middleware('AuthSubAdmin');
 Route::post('subadmin/profilepic/upload',[APIAdminController::class,'ProfilePicUp'])->middleware('AuthSubAdmin');
 Route::post('subadmin/profilepic/changepass',[APIAdminController::class,'ChangePassword'])->middleware('AuthSubAdmin');
 Route::post('subadmin/userinfo',[LoginApiController::class,'UserInfo'])->middleware('AuthSubAdmin');
 
-
+Route::post('customer/sendtext',[ApiController::class,'sendTextByCustomer']); //Ekhane Customer middleware kora lagbe
 
 
 
